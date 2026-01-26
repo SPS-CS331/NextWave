@@ -12,9 +12,7 @@
 
 ### 2. Security Requirements
 
- - The system shall ensure confidentiality of forensic evidence   (Tech stack: HTTPS, TLS).
-
- - The system shall encrypt sensitive data at rest and in transit   (Tech stack: AES encryption, secure database storage).
+ - The system shall ensure confidentiality of forensic evidence, by encrypting sensitive data at rest and in transit   (Tech stack: AES encryption, secure database storage).
 
  - The system shall protect against unauthorized access   (Tech stack: JWT authentication, role-based authorization).
 
