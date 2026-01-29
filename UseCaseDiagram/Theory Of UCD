@@ -1,71 +1,56 @@
-# Use Case Diagram (UCD) in Software Engineering
+USE CASE DIAGRAM (UCD)
 
-A Use Case Diagram (UCD) is a type of UML diagram used in Software Engineering to represent:
+A Use Case Diagram shows:
+- Who uses the system (Actors)
+- What the system can do (Use Cases)
+- How users interact with the system
 
-- Who uses the system (called **Actors**)
-- What the system can do (called **Use Cases**)
-- How users interact with different features of the system
+Why Use Case Diagram is used:
+- To understand system requirements
+- To view the system from user side
+- To identify all system functions
+- To improve communication between client and developer
 
----
+Main Parts:
 
-## Why Use Case Diagrams are Used
+1. Actor
+An actor is a person or another system that uses the software.
+Example: Student, Admin, User, ATM
+Shown as a stick figure.
 
-Use Case Diagrams help in:
+2. Use Case
+A use case is a function of the system.
+Example: Login, Register, Upload File
+Shown as an oval.
 
-- Understanding the system requirements clearly  
-- Showing the system from the user’s point of view  
-- Identifying all possible interactions between users and the system  
-- Making communication easier between developers and clients  
+3. System Boundary
+A rectangle that contains all use cases and shows the system scope.
 
----
+4. Relationships
+- Association: Link between actor and use case
+- Include: One use case always uses another
+- Extend: Optional extra functionality
+- Generalization: Parent-child relationship
 
-## Main Parts of a Use Case Diagram
+Example: Online Library System
 
-### Actor
-An actor is a person or an external system that interacts with the software.
+Actors:
+- Student
+- Librarian
 
-Examples: Student, Admin, User, ATM Machine  
-It is usually shown using a stick figure.
+Use Cases:
+- Search Book
+- Issue Book
+- Return Book
+- Login
+- Manage Books
 
-### Use Case
-A use case represents a function or service provided by the system.
+Interactions:
+- Student can Search Book and Issue Book
+- Librarian can Issue Book, Return Book and Manage Books
 
-Examples: Login, Register, Upload File  
-It is drawn using an oval shape.
-
-### System Boundary
-The system boundary is a rectangle that contains all the use cases and shows the scope of the system.
-
-### Relationships
-- **Association** – Connection between an actor and a use case  
-- **Include** – One use case always uses another (`<<include>>`)  
-- **Extend** – Optional or additional behavior (`<<extend>>`)  
-- **Generalization** – Inheritance between actors or use cases  
-
----
-
-## Example: Online Library System
-
-### Actors
-- Student  
-- Librarian  
-
-### Use Cases
-- Search Book  
-- Issue Book  
-- Return Book  
-- Login  
-- Manage Books  
-
-### Interactions
-- Student can Search Book and Issue Book  
-- Librarian can Issue Book, Return Book, and Manage Books  
-
----
-
-## Important Points
-
-- UCD stands for Use Case Diagram  
-- It is a **behavioral UML diagram**  
-- It shows **what the system does**, not how it is implemented  
-- It mainly represents the **functional requirements** of the system
+Key Points:
+- UCD stands for Use Case Diagram
+- It is a UML diagram
+- It shows what the system does
+- It represents functional requirements, not implementation
