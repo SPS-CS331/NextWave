@@ -1,8 +1,9 @@
-# NextWave  
+#### Project Title  
+# Automated Digital Forensics Evidence Collection Tool
+
 ### CS331 - Sayani Adhikary, Shambhavi Mishra, Poorvi Agarwal
 
-#### Project Title  
-# Automated Digital Forensics Evidence Collection Tool  
+# NextWave  
 
 ## Project Description  
 Automated Digital Forensics Evidence Collection Tool is developed as part of the CS331 course. The main goal of this project is to design a system that can automatically collect, store, manage, and analyze digital evidence in a secure and reliable way. <br/>
