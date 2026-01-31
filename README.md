@@ -1,5 +1,5 @@
 #### Project Title  
-# Automated Digital Forensics Evidence Collection Tool
+## Automated Digital Forensics Evidence Collection Tool
 
 ### CS331 - Sayani Adhikary, Shambhavi Mishra, Poorvi Agarwal
 
