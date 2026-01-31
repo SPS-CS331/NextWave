@@ -1,6 +1,6 @@
 # Automated Digital Forensics Evidence Collection Tool
 
-#### CS331 - Sayani Adhikary, Shambhavi Mishra, Poorvi Agarwal
+### CS331 - Sayani Adhikary, Shambhavi Mishra, Poorvi Agarwal
 ## NextWave
 
 #### Project Description
