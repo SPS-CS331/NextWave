@@ -6,35 +6,35 @@ In addition to what my teammate (Poorvi Agarwal) has done in Part 1 of the UML d
 
 ### Users Identified
 
- - **Forensic Analyst**
+ - **Forensic Analyst** <br/>
    The Forensic Analyst performs technical analysis on the collected evidence, after a specific evidence type is selected and the evidence is uploaded. This includes preprocessing, forensic analysis, and report generation. Hence the Analyst is taking uploads from the investigator, analysing it, and handing over the reports to be viewed by the investigator.
 
- - **Registered User**
+ - **Registered User** <br/>
    A Registered User represents a user who has already been authenticated and granted access to the system. The System Administration is someone who is already registered.
 
- - **New User**
+ - **New User** <br/>
    A New User represents a user who is newly added to the system and may be assigned roles such as investigator or analyst after secure registration / authentication.
 
- - **System Administrator**
+ - **System Administrator** <br/>
    The System Administrator is responsible for managing and monitoring the system. This actor interacts with administrative and maintenance-related functionalities.
 
- - **Forensic Investigator**
+ - **Forensic Investigator** <br/>
    The Forensic Investigator is responsible for collecting digital evidence, selecting evidence types, reviewing reports, and ensuring proper chain of custody during investigations.
 
 ---
 
 ### **Use Cases** included inside the system boundary, for a **Forensic Analyst**:
 
- - **Login**
+ - **Login** <br/>
   Allows all authorized users, including the analysts, to access the system based on their credentials.
 
- - **Preprocess Evidence**
+ - **Preprocess Evidence** <br/>
   Represents preparation of evidence data for forensic analysis, performed by the Forensic Analyst, after the investigator has uploaded the evidence.
 
- - **Perform Forensic Analysis**
+ - **Perform Forensic Analysis** <br/>
   Represents the application of forensic analysis techniques like machine learning and computer vision models, etc. to analyze the evidence.
 
- - **Generate Forensic Reports**
+ - **Generate Forensic Reports** <br/>
   Allows the Forensic Analyst to generate structured forensic reports based on analysis results, which is to be viewed by the investigator.
 
 ---
