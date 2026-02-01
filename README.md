@@ -13,8 +13,9 @@ This project uses software engineering concepts like requirement analysis, UML d
 
 
 ## Updates
- -- Work Till assignment 2 already done.
+- Work till Assignment 2 has been completed.
 
- ## Parts Done
- -- Requirements Analysis.
- -- UML UCD Diagram already done.
+## Parts Done
+- Requirements Analysis  
+- UML Use Case Diagram (UCD)
+
