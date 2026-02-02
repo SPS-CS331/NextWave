@@ -65,6 +65,6 @@ This part of the UML diagram focuses on:
 
  - Evidence review and traceability
 
-#### Administrative system control
+### Administrative system control
 
 It demonstrates how different users interact with the system while maintaining security, accountability, and forensic integrity.
