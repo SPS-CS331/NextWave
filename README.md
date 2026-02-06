@@ -13,9 +13,9 @@ This project uses software engineering concepts like requirement analysis, UML d
 
 
 ## Updates
-- Work till Assignment 2 has been completed.
+- Work till Assignment 3 has been completed.
 
 ## Parts Done
 - Requirements Analysis  
 - UML Use Case Diagram (UCD)
-
+- Data Flow Diagram (DFD) levels 0 & 1

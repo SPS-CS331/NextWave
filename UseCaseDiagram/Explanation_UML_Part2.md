@@ -1,6 +1,6 @@
 ## Explanation of Use Case Diagram [Part 2]
 
-In addition to what my teammate (Poorvi Agarwal) has done in Part 1 of the UML diagram, the diagram for Part 2 represents the **Use Case Diagram** of the **Automated Digital Forensics Evidence Collection and Analysis System**, illustrating the **interaction between different categories of users and the system functionalities (use cases)** within a defined system boundary.
+In addition to what my teammate has done in Part 1 of the UML diagram, the diagram for Part 2 represents the **Use Case Diagram** of the **Automated Digital Forensics Evidence Collection and Analysis System**, illustrating the **interaction between different categories of users and the system functionalities (use cases)** within a defined system boundary.
 
 ---
 
