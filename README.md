@@ -19,3 +19,4 @@ This project uses software engineering concepts like requirement analysis, UML d
 - Requirements Analysis  
 - UML Use Case Diagram (UCD)
 - Data Flow Diagram (DFD) levels 0 & 1
+- UML Class Diagram
