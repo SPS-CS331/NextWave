@@ -1,140 +1,135 @@
-###Data Flow Diagram (Level-1) Explanation
-##Automated Digital Forensics Evidence Collection and Analysis System
- - Overview
+# Data Flow Diagram (Level-1) Explanation  
+## Automated Digital Forensics Evidence Collection and Analysis System
 
-The Level-1 Data Flow Diagram represents the internal working of the Automated Digital Forensics Evidence Collection and Analysis System.
+---
+
+## Overview
+
+The Level-1 Data Flow Diagram represents the internal working of the **Automated Digital Forensics Evidence Collection and Analysis System**.  
 It decomposes the system into multiple functional processes and shows how data flows between users and these processes to ensure secure evidence handling, accurate analysis, and legal integrity.
 
 The system interacts with three main external entities:
 
-System Administrator
+- **System Administrator**
+- **Forensic Investigator**
+- **Forensic Analyst**
 
-Forensic Investigator
+---
 
-Forensic Analyst
+## Explanation of Data Flow and Processes
 
-##Explanation of Data Flow and Processes
- - 1. Authentication
+---
 
-All users (System Administrator, Forensic Investigator, and Forensic Analyst) must first authenticate themselves.
+### 1. Authentication
 
-Data Flow:
+All users (**System Administrator**, **Forensic Investigator**, and **Forensic Analyst**) must first authenticate themselves.
 
-Users provide login credentials
+**Data Flow:**
+- Users provide login credentials  
+- The system verifies user identity and access permissions  
 
-The system verifies user identity and access permissions
+**Purpose:**
+- Ensures that only authorized users can access forensic data and system features.
 
-Purpose:
+---
 
-Ensures that only authorized users can access forensic data and system features.
+### 2. Upload Evidence
 
- - 2. Upload Evidence
+The **Forensic Investigator** uploads digital evidence into the system.
 
-The Forensic Investigator uploads digital evidence into the system.
+**Data Flow:**
+- Digital evidence files  
+- Case-related details (case ID, description, time of collection)  
 
-Data Flow:
+**Purpose:**
+- Introduces raw digital evidence into the forensic system for further processing.
 
-Digital evidence files
+---
 
-Case-related details (case ID, description, time of collection)
-
-Purpose:
-
-Introduces raw digital evidence into the forensic system for further processing.
-
- - 3. Select Evidence Type
+### 3. Select Evidence Type
 
 After uploading evidence, the investigator specifies the type of evidence.
 
-Data Flow:
+**Data Flow:**
+- Evidence type information (image, video, log file, document, etc.)  
 
-Evidence type information (image, video, log file, document, etc.)
+**Purpose:**
+- Helps the system determine appropriate preprocessing and analysis techniques.
 
-Purpose:
+---
 
-Helps the system determine appropriate preprocessing and analysis techniques.
+### 4. Manage Datasets and User Roles
 
- - 4. Manage Datasets and User Roles
+This process is handled by the **System Administrator**.
 
-This process is handled by the System Administrator.
+**Data Flow:**
+- User role configuration data  
+- Dataset and model management details  
 
-Data Flow:
+**Purpose:**
+- Controls access rights of users  
+- Maintains datasets and models required for forensic analysis.
 
-User role configuration data
+---
 
-Dataset and model management details
-
-Purpose:
-
-Controls access rights of users
-
-Maintains datasets and models required for forensic analysis.
-
- - 5. Preprocess Evidence
+### 5. Preprocess Evidence
 
 The uploaded evidence undergoes preprocessing before analysis.
 
-Data Flow:
+**Data Flow:**
+- Raw digital evidence  
+- Reference datasets or model inputs  
 
-Raw digital evidence
+**Purpose:**
+- Cleans, formats, and prepares evidence for accurate forensic analysis.
 
-Reference datasets or model inputs
+---
 
-Purpose:
+### 6. Perform Forensic Analysis
 
-Cleans, formats, and prepares evidence for accurate forensic analysis.
+The **Forensic Analyst** performs detailed analysis on preprocessed evidence.
 
- - 6. Perform Forensic Analysis
+**Data Flow:**
+- Processed evidence data  
+- Analysis parameters and requests  
 
-The Forensic Analyst performs detailed analysis on preprocessed evidence.
+**Purpose:**
+- Identifies patterns, anomalies, or manipulations in evidence using forensic and analytical techniques.
 
-Data Flow:
+---
 
-Processed evidence data
-
-Analysis parameters and requests
-
-Purpose:
-
-Identifies patterns, anomalies, or manipulations in evidence using forensic and analytical techniques.
-
- - 7. Generate Forensic Reports
+### 7. Generate Forensic Reports
 
 Results of forensic analysis are converted into structured reports.
 
-Data Flow:
+**Data Flow:**
+- Analysis results  
+- Structured forensic findings  
 
-Analysis results
+**Purpose:**
+- Produces legally admissible forensic reports for investigations and court proceedings.
 
-Structured forensic findings
+---
 
-Purpose:
-
-Produces legally admissible forensic reports for investigations and court proceedings.
-
- - 8. Review Reports
+### 8. Review Reports
 
 Authorized users review the generated forensic reports.
 
-Data Flow:
+**Data Flow:**
+- Forensic reports to be examined by investigators and analysts  
 
-Forensic reports to be examined by investigators and analysts
+**Purpose:**
+- Allows verification and validation of results before final submission.
 
-Purpose:
+---
 
-Allows verification and validation of results before final submission.
-
- - 9. View Chain of Custody
+### 9. View Chain of Custody
 
 The system provides a complete record of evidence handling activities.
 
-Data Flow:
+**Data Flow:**
+- Evidence handling history  
+- Integrity verification data  
 
-Evidence handling history
-
-Integrity verification data
-
-Purpose:
-
-Maintains transparency, accountability, and forensic soundness of evidence throughout its lifecycle.
-    
+**Purpose:**
+- Maintains transparency, accountability, and forensic soundness of evidence throughout its lifecycle.
