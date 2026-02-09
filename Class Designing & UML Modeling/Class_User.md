@@ -55,3 +55,16 @@
 
 ## Inheritance Relationship Summary
 
+USER
+├── SYSTEM_ADMINISTRATOR
+├── FORENSIC_INVESTIGATOR
+└── FORENSIC_ANALYST
+
+
+---
+
+## Visibility Legend
+- `+` → Public  
+- `-` → Private  
+- `#` → Protecte
+
