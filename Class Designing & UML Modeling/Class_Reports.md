@@ -7,41 +7,42 @@ This module defines the base **REPORTS** class and its specialized subclasses us
 ## Class: REPORTS (Protected)
 
 ### Attributes
-- `report_id`  
-- `evidence_id`
+- `report_id : int`  
+- `evidence_id : int`
 
 ### Methods
-- `request_report()`
+- `request_report() : void`
 
 ---
 
 ## Class: ANALYSIS_REPORT (extends REPORTS)
 
 ### Attributes
-- `findings`  
-- `confidence_score`
+- `findings : String`  
+- `confidence_score : float`
 
 ### Methods
-- `display_analysis_report()`
+- `display_analysis_report() : void`
 
 ---
 
 ## Class: LOGS_REPORT (extends REPORTS)
 
 ### Attributes
-- `log_id`  
-- `log_list`
+- `log_id : int`  
+- `log_list : List<String>`
 
 ### Methods
-- `is_modified()`  
-- `view_logs()`
+- `is_modified() : boolean`  
+- `view_logs() : void`
 
 ---
 
-REPORTS  
-├── ANALYSIS_REPORT  
-└── LOGS_REPORT
+## Inheritance Structure
 
+REPORTS
+├── ANALYSIS_REPORT
+└── LOGS_REPORT
 
 
 
@@ -51,6 +52,4 @@ REPORTS
 - `REPORTS` acts as a base class containing common report metadata.
 - `ANALYSIS_REPORT` is used for analytical findings with confidence evaluation.
 - `LOGS_REPORT` focuses on system or activity logs and modification detection.
-
-## Inheritance Overview
-
+- All method return types are explicitly defined for implementation clarity.
