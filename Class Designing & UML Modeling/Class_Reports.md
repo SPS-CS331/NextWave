@@ -40,8 +40,10 @@ This module defines the base **REPORTS** class and its specialized subclasses us
 
 ## Inheritance Structure
 
-REPORTS
-├── ANALYSIS_REPORT
+
+
+REPORTS  
+├── ANALYSIS_REPORT  
 └── LOGS_REPORT
 
 
