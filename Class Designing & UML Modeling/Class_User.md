@@ -53,13 +53,13 @@
 
 ---
 
-## Inheritance Relationship Summary
+## Inheritance Hierarchy
 
+```text
 USER
 ├── SYSTEM_ADMINISTRATOR
 ├── FORENSIC_INVESTIGATOR
 └── FORENSIC_ANALYST
-
 
 ---
 
