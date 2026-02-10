@@ -14,7 +14,6 @@ function generateRoleId(role) {
 
 router.post("/signup", async (req, res) => {
   const { name, email, password, role, department, specialization } = req.body;
-
   const hashedPassword = await bcrypt.hash(password, 10);
   const roleId = generateRoleId(role);
 
