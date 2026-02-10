@@ -21,12 +21,6 @@ export default function Signup() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   await axios.post("http://localhost:5000/api/auth/signup", form);
-  //   navigate("/login");
-  // }
-
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await axios.post("http://localhost:5000/api/auth/signup", form);
