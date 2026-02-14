@@ -1,4 +1,6 @@
-## B. Justification of Why This Architecture is Best
+### Part 1-B
+
+# Justification of Why Layered Architecture is Best for our system
 
 The **Layered Architecture** is the most suitable design choice for the **Automated Digital Forensics Evidence Collection and Analysis System** due to its ability to satisfy critical system requirements such as scalability, maintainability, performance, simplicity, and extensibility.
 
@@ -14,6 +16,8 @@ Layered Architecture naturally supports system scalability by allowing independe
   - More complex ML models
   - Increased number of users
 This makes the system capable of handling increasing data volumes and analytical complexity.
+
+---
 
 ### Maintainability
 The separation of responsibilities across layers significantly improves system maintainability.
