@@ -18,15 +18,15 @@ Our Digital Forensics System is structured into logical layers to ensure clean o
 
 ## Overall Layer Structure
 
-Presentation Layer (React Frontend)  
-↓  
-Application / Business Logic Layer (Node.js / Express)  
-↓  
-Machine Learning / Analysis Layer  
-↓  
-Data Access Layer (Mongoose Models)  
-↓  
-Database Layer (MongoDB)
+          Presentation Layer (React Frontend)  
+                          ↓  
+          Application / Business Logic Layer (Node.js / Express)  
+                          ↓  
+          Machine Learning / Analysis Layer  
+                          ↓  
+          Data Access Layer (Mongoose Models)  
+                          ↓  
+          Database Layer (MongoDB)
 
 ---
 
