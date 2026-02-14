@@ -15,6 +15,8 @@ Layered Architecture naturally supports system scalability by allowing independe
   - Increased number of users
 This makes the system capable of handling increasing data volumes and analytical complexity.
 
+---
+
 ### Maintainability
 The separation of responsibilities across layers significantly improves system maintainability.
 •	Clear separation of concerns reduces system complexity.
