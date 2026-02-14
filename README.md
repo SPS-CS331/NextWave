@@ -13,7 +13,7 @@ This project uses software engineering concepts like requirement analysis, UML d
 
 
 ## Updates
-- Work till Assignment 3 has been completed.
+- Work till Assignment 4 has been completed.
 
 ## Parts Done
 - Requirements Analysis  
