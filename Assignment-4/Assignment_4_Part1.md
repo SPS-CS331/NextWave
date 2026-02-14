@@ -1,4 +1,4 @@
-# CS 331 – Software Engineering Lab Assignment 4
+# CS 331 – Software Engineering Lab Assignment 4 Part A Only
 
 ## Architectural Design: Layered Architecture
 
