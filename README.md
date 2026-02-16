@@ -21,10 +21,10 @@ This project uses software engineering concepts like requirement analysis, UML d
 - Data Flow Diagram (DFD) levels 0 & 1
 - UML Class Diagram
 - 2 modules implemented: Authentication & Select Evidence Type
-- Architecture Choosen As Layered Architecture
+- Architecture Chosen As Layered Architecture
 
 ## Current Work
-- Currently Working On Diagram for Components
+- Completed Diagram for Components
 
 
 
