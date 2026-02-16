@@ -4,7 +4,7 @@
 
 # 1️. Presentation Layer (UI Layer)
 
-## 🔸 Components
+## . Components
 
 ### 1. Authentication & Profile Interface
 - Login input  
@@ -29,7 +29,7 @@
 
 # 2️. Application / Business Logic Layer
 
-## 🔸 Components
+## . Components
 
 ### 1. Authentication & Access Control Module
 - Login validation  
@@ -64,7 +64,7 @@
 
 #  3️. Machine Learning / Analysis Layer
 
-## 🔸 Components
+## . Components
 
 ### 1. Model Management Module
 - Model loading  
@@ -80,7 +80,7 @@
 
 # 4️. Data Layer (Persistence Layer)
 
-## 🔸 Components
+## . Components
 
 ### 1. User & Access Database
 - User credentials  
