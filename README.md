@@ -8,6 +8,7 @@ Automated Digital Forensics Evidence Collection Tool is developed as part of the
 
 The tool helps investigators and analysts by providing features such as secure login, role-based access control, evidence upload, integrity verification, and organized storage of different types of digital artifacts. It follows proper digital forensics principles to ensure that evidence is not tampered with and can be used for investigation and legal purposes. <br/>
 
+
 This project uses software engineering concepts like requirement analysis, UML diagrams, use case modeling, and systematic system design.
 
 
