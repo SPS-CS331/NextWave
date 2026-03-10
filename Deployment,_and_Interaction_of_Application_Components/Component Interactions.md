@@ -35,7 +35,7 @@
 ---
 
 # System Interaction Diagram
- <img width="500" height="auto" margin="auto" alt="image" src="https://github.com/user-attachments/assets/d30772c4-57f1-4997-b3e7-8308095c9e58" />
+ <img width="500" height="auto" border="5px solid teal" alt="image" src="https://github.com/user-attachments/assets/d30772c4-57f1-4997-b3e7-8308095c9e58" />
 
 
 
