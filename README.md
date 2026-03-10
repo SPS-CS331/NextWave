@@ -14,21 +14,13 @@ This project uses software engineering concepts like requirement analysis, UML d
 
 
 ## Updates
-- Work till Assignment 4 has been completed.
+- Work till Assignment 5 has been completed.
 
 ## Parts Done
 - Requirements Analysis  
 - UML Use Case Diagram (UCD)
 - Data Flow Diagram (DFD) levels 0 & 1
 - UML Class Diagram
-- 2 modules implemented: Authentication & Select Evidence Type
+- 4 modules implemented: Authentication & Select Evidence Type, Manage Datasets & Upload Evidence
 - Architecture Chosen As Layered Architecture
-
-## Current Work
-- Completed Diagram for Components
-
-
-
-
-
-
+- Deployment Design and Component Interactions
