@@ -1,8 +1,3 @@
-/**
- * Node/React (Vite) version of the dashboard page.
- * Uses the same REST API as the Next.js build but removes all Next-specific imports.
- */
-
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,8 +12,6 @@ const evidenceTypes = [
 
 export default function Home() {
   const navigate = useNavigate();
-
-  // Local state (kept intentionally simple to avoid Next/React Query deps).
   const [user, setUser] = useState(null);
   const [evidence, setEvidence] = useState([]);
   const [analyses, setAnalyses] = useState([]);
@@ -29,13 +22,13 @@ export default function Home() {
   const [error, setError] = useState("");
   const [adminDatasetView, setAdminDatasetView] = useState("face");
 
-  // Auth header built once from the token saved by the login page.
+  // Auth header built once from the token saved by the login page
   const authHeaders = useMemo(() => {
     const token = localStorage.getItem("token");
     return token ? { Authorization: `Bearer ${token}` } : {};
   }, []);
 
-  // Bootstrap the page: fetch current user and dependent data.
+  // Bootstrap the page: fetch current user and dependent data
   useEffect(() => {
     const bootstrap = async () => {
       try {
@@ -54,7 +47,6 @@ export default function Home() {
       }
     };
     bootstrap();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadEvidence = async () => {
