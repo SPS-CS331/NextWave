@@ -96,7 +96,7 @@ app.use(cors());
 - Protects user credentials  
 
 ### Database Security
-- MongoDB Atlas IP Whitelisting  
+- MongoDB Atlas does IP Whitelisting  
 
 ### Secrets Management
 - Environment variables instead of hardcoding
