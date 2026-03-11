@@ -10,16 +10,16 @@
 
 ## Evidence Processing Pipeline
 
-  Sequential flow: Ensures structured analysis
-    **Upload Evidence**
-          ↓
-    **Select Evidence Type**
-          ↓
-    **Preprocess Evidence**
-          ↓
-    **Perform Forensic Analysis**
-          ↓
-    **Generate Forensic Reports**
+  Sequential flow: Ensures structured analysis<br/>
+    **Upload Evidence**<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>
+    **Select Evidence Type**<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>
+    **Preprocess Evidence**<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>
+    **Perform Forensic Analysis**<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>
+    **Generate Forensic Reports**<br/>
 
 ## Data Repositories
 
