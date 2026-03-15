@@ -34,7 +34,7 @@ router.post("/:analysisId", auth, requireRole("Analyst", "Administrator"), async
   res.status(201).json(report);
 });
 
-// List reports (Admin all, Analyst their own, Investigator see related evidence)
+
 router.get("/", auth, async (req, res) => {
   let filter = {};
   if (req.user.role === "Analyst") {
