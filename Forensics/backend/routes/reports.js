@@ -7,7 +7,6 @@ const { addLog } = require("../utils/logger");
 
 const router = express.Router();
 
-// Generate report from an analysis (Analyst/Admin)
 router.post("/:analysisId", auth, requireRole("Analyst", "Administrator"), async (req, res) => {
   const { content, summary } = req.body;
   const analysis = await Analysis.findById(req.params.analysisId);
