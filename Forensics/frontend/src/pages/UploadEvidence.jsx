@@ -50,7 +50,7 @@ export default function UploadEvidence() {
       }
     };
     bootstrap();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, []);
 
   const handleSubmit = async (event) => {
