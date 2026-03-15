@@ -14,7 +14,7 @@ const evidenceSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: String,
-    type: { type: String, required: true }, // e.g., "image", "video", "disk", etc.
+    type: { type: String, required: true }, 
     caseId: String,
     uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     status: { type: String, default: "uploaded" },

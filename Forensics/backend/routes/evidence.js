@@ -6,7 +6,6 @@ const { addLog } = require("../utils/logger");
 
 const router = express.Router();
 
-// Create / upload evidence (Investigator/Admin)
 router.post("/", auth, requireRole("Investigator", "Administrator"), async (req, res) => {
   try {
     const { title, description, type, caseId } = req.body;
