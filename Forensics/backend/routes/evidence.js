@@ -380,7 +380,7 @@ router.post("/analyses/:analysisId/run-model", auth, requireRole("Analyst", "Adm
   }
 });
 
-// Structured evidence upload for investigators (multipart)
+
 router.post(
   "/upload",
   auth,
@@ -403,7 +403,7 @@ router.post(
       }
 
       let payload = {
-        // Store the type exactly as selected during upload
+        
         type: selectedEvidenceType,
         evidenceType: selectedEvidenceType,
         caseId: req.body.caseId,
@@ -513,7 +513,7 @@ router.post(
             uploadTimestamp: payload.uploadTimestamp,
           });
         } catch (faceErr) {
-          // Keep main evidence saved even if the optional face-specific collection write fails.
+          
           console.error("FaceRecognitionUpload create error:", faceErr.message);
         }
       }
