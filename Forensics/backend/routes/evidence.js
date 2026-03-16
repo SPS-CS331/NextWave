@@ -241,7 +241,7 @@ router.post("/", auth, requireRole("Investigator", "Administrator"), async (req,
   }
 });
 
-// List evidence (Admin: all, Investigator: own, Analyst: all for review)
+
 router.get("/", auth, async (req, res) => {
   let filter = {};
   if (req.user.role === "Investigator") {
@@ -279,7 +279,7 @@ router.get("/:id/custody", auth, async (req, res) => {
   res.json(evidence.custodyTrail || []);
 });
 
-// Start analysis for an evidence (Investigator/Admin)
+
 router.post("/:id/analysis", auth, requireRole("Investigator", "Administrator"), async (req, res) => {
   const evidence = await Evidence.findById(req.params.id);
   if (!evidence) return res.status(404).json({ error: "Evidence not found" });
