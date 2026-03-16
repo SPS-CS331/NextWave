@@ -7,7 +7,7 @@ const { addLog } = require("../utils/logger");
 
 const router = express.Router();
 
-// Generate report from an analysis (Analyst/Admin)
+
 router.post("/:analysisId", auth, requireRole("Analyst", "Administrator"), async (req, res) => {
   const { content, summary } = req.body;
   const analysis = await Analysis.findById(req.params.analysisId);
@@ -35,7 +35,7 @@ router.post("/:analysisId", auth, requireRole("Analyst", "Administrator"), async
   res.status(201).json(report);
 });
 
-// List reports (Admin all, Analyst their own, Investigator see related evidence)
+
 router.get("/", auth, async (req, res) => {
   let filter = {};
   if (req.user.role === "Analyst") {
@@ -49,7 +49,7 @@ router.get("/", auth, async (req, res) => {
   res.json(reports);
 });
 
-// Download one report as text file (role-scoped)
+
 router.get("/:reportId/download", auth, async (req, res) => {
   const report = await Report.findById(req.params.reportId).populate("evidence").populate("createdBy");
   if (!report) return res.status(404).json({ error: "Report not found" });
