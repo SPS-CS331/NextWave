@@ -15,7 +15,6 @@ const ALLOWED_TYPES = [
   "face recognition",
 ];
 
-// Multer setup for evidence file uploads
 const uploadsDir = path.join(__dirname, "..", "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
@@ -115,7 +114,6 @@ function runBiometricModel(evidence) {
   const activity = String(input.activity || "");
 
   if ([hr, bo, bt, rr, st].every((v) => v === null) && !activity) {
-    // For non-wearable biometric uploads (like face evidence), still return a model output.
     return {
       datasetKeyword: "biometric",
       datasetPath,
@@ -209,7 +207,7 @@ function runPredictionForEvidence(evidence) {
   throw new Error("No matching dataset keyword found for this evidence");
 }
 
-// Create / upload evidence (Investigator/Admin)
+
 router.post("/", auth, requireRole("Investigator", "Administrator"), async (req, res) => {
   try {
     const { title, description, type, caseId } = req.body;
@@ -255,7 +253,7 @@ router.get("/", auth, async (req, res) => {
   res.json(evidence);
 });
 
-// Add chain-of-custody event
+
 router.post("/:id/custody", auth, async (req, res) => {
   const { action, notes } = req.body;
   const evidence = await Evidence.findById(req.params.id);
@@ -298,7 +296,7 @@ router.post("/:id/analysis", auth, requireRole("Investigator", "Administrator"),
   });
 
   if (!isAssignedToAnalyst) {
-    // Simulate immediate completion for demo purposes
+    
     analysis.status = "completed";
     analysis.findings = `Automated findings for ${evidence.title} using ${analysis.modelUsed}`;
     await analysis.save();
@@ -315,7 +313,7 @@ router.post("/:id/analysis", auth, requireRole("Investigator", "Administrator"),
   res.status(201).json(analysis);
 });
 
-// List analyses (role scoped)
+
 router.get("/analyses/all", auth, async (req, res) => {
   let filter = {};
   if (req.user.role === "Investigator") {
@@ -334,7 +332,7 @@ router.get("/analyses/all", auth, async (req, res) => {
   res.json(analyses);
 });
 
-// Run model on assigned analysis (Analyst/Admin)
+
 router.post("/analyses/:analysisId/run-model", auth, requireRole("Analyst", "Administrator"), async (req, res) => {
   try {
     const analysis = await Analysis.findById(req.params.analysisId).populate("evidence");
