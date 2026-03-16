@@ -1,1 +1,109 @@
+B. UI Implementation and User Interaction
 
+The system interface is implemented as a **web-based UI** interacting with the **backend forensic analysis server**.
+
+---
+
+## 1. Login Interface
+
+Users must authenticate before accessing the system.
+
+### Components
+- Username field
+- Password field
+- Role selection
+- Login button
+
+### Example UI Code
+
+```html
+<form>
+<label>Username:</label>
+<input type="text" name="username">
+
+<label>Password:</label>
+<input type="password" name="password">
+
+<label>Role:</label>
+<select>
+<option>Administrator</option>
+<option>Investigator</option>
+<option>Analyst</option>
+</select>
+
+<button>Login</button>
+</form>
+2. Dashboard Interface (Menu-Based)
+
+After login, users see a dashboard with menu options.
+
+Example Menu
+
+Digital Forensics Dashboard
+
+Create Case
+
+Upload Evidence
+
+View Evidence
+
+Run Analysis
+
+Chain of Custody
+
+Generate Report
+
+Logout
+
+Users select operations by clicking the menu buttons.
+
+3. Evidence Upload Interface (Direct Manipulation)
+
+The evidence upload page allows users to drag and drop files.
+
+Example
+
+Upload Evidence → [ Drag & Drop Files Here ]
+or
+[ Browse Files ]
+
+User Interaction
+
+Investigator drags a forensic image file.
+
+System uploads the file to the server.
+
+Evidence ID is generated.
+
+4. Analysis Interaction
+
+Users select evidence and run analysis.
+
+Example Interaction
+Select Evidence: EV204
+Analysis Type: Metadata Extraction
+
+[Run Analysis]
+System Output
+Analysis Completed
+Files Found: 120
+Deleted Files Recovered: 32
+5. Chain of Custody Viewer
+
+The system displays evidence handling history.
+
+Example
+
+Case ID: CASE102
+
+Timestamp	Action	User
+10:10 AM	Case Created	Investigator
+10:12 AM	Evidence Uploaded	Investigator
+10:20 AM	Analysis Run	Analyst
+Conclusion
+
+The Digital Forensics Investigation System uses a hybrid user interface combining Menu-Based and Direct Manipulation approaches.
+
+The menu-based interface provides structured navigation across system modules.
+
+The direct manipulation interface allows intuitive interaction with evidence files and analysis tools.
