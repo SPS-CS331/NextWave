@@ -283,16 +283,16 @@ export default function Signup() {
                     Select Department
                   </option>
 
-                  <option style={styles.option} value="Digital Forensics">
-                    Digital Forensics
+                  <option style={styles.option} value="Cybercrime">
+                    Cybercrime
                   </option>
 
-                  <option style={styles.option} value="Biometric Analysis">
-                    Biometric Analysis
+                  <option style={styles.option} value="Wearable Biometric">
+                    Wearable Biometric
                   </option>
 
-                  <option style={styles.option} value="Crime Scene Investigation">
-                    Crime Scene Investigation
+                  <option style={styles.option} value="Face Rcognization">
+                    Face Rcognization
                   </option>
 
                 </select>
@@ -314,16 +314,16 @@ export default function Signup() {
                     Select Specialization
                   </option>
 
-                  <option style={styles.option} value="Fingerprint Analysis">
-                    Fingerprint Analysis
+                  <option style={styles.option} value="Cybercrime">
+                    Cybercrime
                   </option>
 
-                  <option style={styles.option} value="Face Recognition">
-                    Face Recognition
+                  <option style={styles.option} value="Wearable Biometric">
+                    Wearable Biometric
                   </option>
 
-                  <option style={styles.option} value="Blood Pattern Analysis">
-                    Blood Pattern Analysis
+                  <option style={styles.option} value="Face Recognisation">
+                    Face Recognisation
                   </option>
 
                 </select>

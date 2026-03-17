@@ -5,16 +5,21 @@ import axios from "axios";
 const API_BASE = "http://localhost:5000/api";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-
+  const navigate = useNavigate(); 
   const [user, setUser] = useState(null);
   const [evidence, setEvidence] = useState([]);
   const [analyses, setAnalyses] = useState([]);
+  const [analysts, setAnalysts] = useState([]);
   const [datasets, setDatasets] = useState([]);
   const [reports, setReports] = useState([]);
   const [logs, setLogs] = useState([]);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [selectedAnalystByEvidence, setSelectedAnalystByEvidence] = useState({});
+  const [assigningEvidenceId, setAssigningEvidenceId] = useState("");
+  const [assignPanelEvidenceId, setAssignPanelEvidenceId] = useState("");
+  const [runningModelAnalysisId, setRunningModelAnalysisId] = useState("");
+  const [generatingReportAnalysisId, setGeneratingReportAnalysisId] = useState("");
 
   const [activeAdminTab, setActiveAdminTab] = useState("dashboard");
   const [adminDatasetView, setAdminDatasetView] = useState("face");
@@ -38,6 +43,7 @@ export default function Dashboard() {
         await Promise.all([
           loadEvidence(),
           loadAnalyses(),
+          loadAnalysts(me.data),
           loadDatasets(),
           loadReports(),
           loadLogs(me.data),
@@ -59,6 +65,13 @@ export default function Dashboard() {
   const loadAnalyses = async () => {
     const res = await axios.get(`${API_BASE}/evidence/analyses/all`, { headers: authHeaders });
     setAnalyses(res.data);
+  };
+
+  const loadAnalysts = async (meOverride) => {
+    const currentUser = meOverride || user;
+    if (currentUser?.role !== "Administrator") return;
+    const res = await axios.get(`${API_BASE}/auth/analysts`, { headers: authHeaders });
+    setAnalysts(res.data);
   };
 
   const loadDatasets = async () => {
@@ -126,6 +139,34 @@ export default function Dashboard() {
       await loadReports();
     } catch (err) {
       setError(err.response?.data?.error || "Failed to create report");
+    }
+  };
+
+  const handleAssignAnalyst = async (evidenceId) => {
+    setMessage("");
+    setError("");
+
+    const assignedTo = selectedAnalystByEvidence[evidenceId];
+    if (!assignedTo) {
+      setError("Please select an analyst before assignment.");
+      return;
+    }
+
+    try {
+      setAssigningEvidenceId(evidenceId);
+      await axios.post(
+        `${API_BASE}/evidence/${evidenceId}/analysis`,
+        { assignedTo, modelUsed: "admin-assignment" },
+        { headers: authHeaders }
+      );
+      setMessage("Analyst assigned successfully.");
+      await loadAnalyses();
+      setAssignPanelEvidenceId("");
+      setSelectedAnalystByEvidence((prev) => ({ ...prev, [evidenceId]: "" }));
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to assign analyst");
+    } finally {
+      setAssigningEvidenceId("");
     }
   };
 
@@ -267,6 +308,119 @@ export default function Dashboard() {
     return true;
   });
 
+  const investigatorEvidenceForAdmin = evidence.filter((ev) => {
+    if (!ev?.uploadedBy) return false;
+    return String(ev.uploadedBy.role || "").toLowerCase() === "investigator";
+  });
+
+  const normalizeDomain = (value) => {
+    const normalized = String(value || "").toLowerCase().trim();
+    if (!normalized) return "";
+    if (normalized.includes("cyber")) return "cybercrime";
+    if (normalized.includes("wearable")) return "wearable biometric";
+    if (
+      normalized.includes("face") ||
+      normalized.includes("biometric") ||
+      normalized.includes("recognisation") ||
+      normalized.includes("rcogn")
+    ) {
+      return "face recognition";
+    }
+    return normalized;
+  };
+
+  const handleRunModel = async (analysisId) => {
+    setMessage("");
+    setError("");
+    try {
+      setRunningModelAnalysisId(analysisId);
+      await axios.post(`${API_BASE}/evidence/analyses/${analysisId}/run-model`, {}, { headers: authHeaders });
+      setMessage("Model executed successfully.");
+      await loadAnalyses();
+      await loadReports();
+    } catch (err) {
+      try {
+        setGeneratingReportAnalysisId(analysisId);
+        const assignment = analyses.find((a) => a._id === analysisId);
+        const evidenceTitle = assignment?.evidence?.title || "Assigned Evidence";
+        const dummyPayload = {
+          summary: `Dummy report generated for ${evidenceTitle}`,
+          content:
+            `Dummy Forensic Report\n` +
+            `Evidence: ${evidenceTitle}\n` +
+            `Reason: Model run was unavailable at this time.\n` +
+            `Preliminary Result: Further manual review required by analyst.\n` +
+            `Generated At: ${new Date().toLocaleString()}\n`,
+        };
+        await axios.post(`${API_BASE}/reports/${analysisId}`, dummyPayload, { headers: authHeaders });
+        setMessage("Model failed, so a dummy report was generated and sent to investigator.");
+        await loadReports();
+      } catch (reportErr) {
+        setError(
+          reportErr.response?.data?.error ||
+          err.response?.data?.error ||
+          "Failed to run model"
+        );
+      } finally {
+        setGeneratingReportAnalysisId("");
+      }
+    } finally {
+      setRunningModelAnalysisId("");
+    }
+  };
+
+  const downloadReport = async (report, evidenceTitle) => {
+    if (!report) return;
+    try {
+      const res = await axios.get(`${API_BASE}/reports/${report._id}/download`, {
+        headers: authHeaders,
+        responseType: "blob",
+      });
+      const safeTitle = (evidenceTitle || "evidence").replace(/[^\w-]+/g, "_");
+      const fallback = `${safeTitle}_report.txt`;
+      const contentDisposition = res.headers["content-disposition"] || "";
+      const match = contentDisposition.match(/filename="?([^"]+)"?/i);
+      const fileName = match?.[1] || fallback;
+
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(res.data);
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to download report");
+    }
+  };
+
+  const getMatchingAnalysts = (ev) => {
+    const evidenceDomain = normalizeDomain(ev?.evidenceType || ev?.type);
+    return analysts.filter((analyst) => normalizeDomain(analyst.specialization) === evidenceDomain);
+  };
+
+  const analystAssignments = analyses.filter((analysis) => {
+    const assignedToId = analysis?.assignedTo?._id || analysis?.assignedTo;
+    return String(assignedToId || "") === String(user?._id || "");
+  });
+  const investigatorModelOutputs = analyses.filter((analysis) => {
+    const uploaderId = analysis?.evidence?.uploadedBy?._id || analysis?.evidence?.uploadedBy;
+    return (
+      String(uploaderId || "") === String(user?._id || "") &&
+      Boolean(analysis?.prediction?.predictedTarget || analysis?.findings)
+    );
+  });
+  const investigatorEvidenceWithReports = evidence.map((ev) => {
+    const reportCandidates = reports.filter((r) => {
+      const reportEvidenceId = r?.evidence?._id || r?.evidence;
+      return String(reportEvidenceId || "") === String(ev?._id || "");
+    });
+    const latestReport = reportCandidates.sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )[0];
+    return { evidence: ev, report: latestReport || null };
+  });
+
   return (
     <div style={styles.page}>
       <div style={styles.backdrop} />
@@ -363,6 +517,191 @@ export default function Dashboard() {
                 <strong>{ev.title}</strong> ({ev.type}) - status: {ev.status}
               </div>
             ))}
+          </div>
+        </section>
+      )}
+
+      {showMainWorkTab && isInvestigator && (
+        <section style={styles.card}>
+          <h2>View Reports Sent By The Analyst</h2>
+          <div style={styles.list}>
+            {investigatorEvidenceWithReports.map(({ evidence: ev, report }) => (
+              <div key={ev._id} style={styles.item}>
+                <div style={styles.evidenceTitleRow}>
+                  <strong>{ev.title}</strong>
+                  <span style={styles.evidenceMeta}>Type: {ev.type}</span>
+                </div>
+                <div style={styles.assignRow}>
+                  <span style={styles.evidenceMeta}>
+                    {report ? `Report ready (${new Date(report.createdAt).toLocaleString()})` : "Report not available yet"}
+                  </span>
+                  <button
+                    type="button"
+                    style={{
+                      ...styles.reportDownloadButton,
+                      ...(report ? styles.reportDownloadButtonReady : styles.reportDownloadButtonPending),
+                    }}
+                    disabled={!report}
+                    onClick={() => downloadReport(report, ev.title)}
+                  >
+                    Download Report
+                  </button>
+                </div>
+              </div>
+            ))}
+            {!investigatorEvidenceWithReports.length && (
+              <div style={styles.item}>No uploaded evidence found yet.</div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {showMainWorkTab && isInvestigator && (
+        <section style={styles.card}>
+          <h2>Model Outputs On My Uploaded Evidence</h2>
+          <div style={styles.list}>
+            {investigatorModelOutputs.map((analysis) => (
+              <div key={analysis._id} style={styles.item}>
+                <strong>{analysis.evidence?.title || "Evidence"}</strong>
+                <div style={styles.evidenceMeta}>
+                  Result: {analysis.prediction?.predictedTarget || analysis.findings || "No output"}
+                </div>
+                <div style={styles.evidenceMeta}>
+                  Model: {analysis.prediction?.modelName || analysis.modelUsed || "N/A"}
+                </div>
+                <div style={styles.evidenceMeta}>
+                  Confidence: {analysis.prediction?.confidence ?? "N/A"}
+                </div>
+                <div style={styles.evidenceMeta}>
+                  Dataset keyword: {analysis.prediction?.datasetKeyword || "N/A"}
+                </div>
+              </div>
+            ))}
+            {!investigatorModelOutputs.length && (
+              <div style={styles.item}>No model output yet for your uploaded evidence.</div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {showMainWorkTab && isAdmin && (
+        <section style={styles.card}>
+          <h2>Investigator Uploaded Evidence</h2>
+          <div style={styles.list}>
+            {investigatorEvidenceForAdmin.map((ev) => {
+              const matchingAnalysts = getMatchingAnalysts(ev);
+              const selectedAnalyst = selectedAnalystByEvidence[ev._id] || "";
+              const isPanelOpen = assignPanelEvidenceId === ev._id;
+              return (
+                <div key={ev._id} style={styles.item}>
+                  <div style={styles.evidenceTitleRow}>
+                    <strong>{ev.title}</strong>
+                    <span style={styles.evidenceMeta}>Case: {ev.caseId}</span>
+                  </div>
+                  <div style={styles.evidenceMeta}>
+                    Uploaded by: {ev.uploadedBy?.name || "Investigator"} ({ev.uploadedBy?.investigatorId || "N/A"})
+                  </div>
+                  <div style={styles.evidenceMeta}>
+                    Evidence Type: {ev.evidenceType || ev.type || "N/A"}
+                  </div>
+                  {!isPanelOpen && (
+                    <button
+                      type="button"
+                      style={styles.buttonPrimary}
+                      onClick={() => {
+                        setAssignPanelEvidenceId(ev._id);
+                        setSelectedAnalystByEvidence((prev) => ({ ...prev, [ev._id]: "" }));
+                      }}
+                    >
+                      Assign Analyst
+                    </button>
+                  )}
+                  {isPanelOpen && (
+                    <div style={styles.form}>
+                      <select
+                        style={styles.select}
+                        value={selectedAnalyst}
+                        onChange={(event) =>
+                          setSelectedAnalystByEvidence((prev) => ({ ...prev, [ev._id]: event.target.value }))
+                        }
+                      >
+                        <option value="">Select matching analyst</option>
+                        {matchingAnalysts.map((analyst) => (
+                          <option key={analyst._id} value={analyst._id}>
+                            {analyst.name} ({analyst.specialization})
+                          </option>
+                        ))}
+                      </select>
+                      {!matchingAnalysts.length && (
+                        <div style={styles.evidenceMeta}>
+                          No forensic analyst found with matching specialization for this evidence type.
+                        </div>
+                      )}
+                      <div style={styles.assignRow}>
+                        <button
+                          type="button"
+                          style={styles.buttonPrimary}
+                          onClick={() => handleAssignAnalyst(ev._id)}
+                          disabled={assigningEvidenceId === ev._id || !matchingAnalysts.length}
+                        >
+                          {assigningEvidenceId === ev._id ? "Assigning..." : "Confirm Assignment"}
+                        </button>
+                        <button
+                          type="button"
+                          style={styles.buttonSecondary}
+                          onClick={() => setAssignPanelEvidenceId("")}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            {!investigatorEvidenceForAdmin.length && (
+              <div style={styles.item}>No investigator uploads available.</div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {showMainWorkTab && isAnalyst && (
+        <section style={styles.card}>
+          <h2>Assignment Messages</h2>
+          <div style={styles.list}>
+            {analystAssignments.map((assignment) => (
+              <div key={assignment._id} style={styles.item}>
+                You have been assigned evidence: <strong>{assignment.evidence?.title || "Untitled Evidence"}</strong>
+                {" "}({assignment.evidence?.type || "Unknown type"}).
+                <div style={styles.evidenceMeta}>
+                  Assigned at: {new Date(assignment.createdAt).toLocaleString()}
+                </div>
+                <div style={styles.assignRow}>
+                  <button
+                    type="button"
+                    style={styles.buttonPrimary}
+                    onClick={() => handleRunModel(assignment._id)}
+                    disabled={
+                      runningModelAnalysisId === assignment._id ||
+                      generatingReportAnalysisId === assignment._id
+                    }
+                  >
+                    {runningModelAnalysisId === assignment._id
+                      ? "Running..."
+                      : generatingReportAnalysisId === assignment._id
+                        ? "Generating Report..."
+                        : "Run Model"}
+                  </button>
+                </div>
+                {assignment.prediction?.predictedTarget && (
+                  <div style={styles.evidenceMeta}>
+                    Latest output: {assignment.prediction.predictedTarget} ({assignment.prediction.confidence})
+                  </div>
+                )}
+              </div>
+            ))}
+            {!analystAssignments.length && <div style={styles.item}>No assignment messages yet.</div>}
           </div>
         </section>
       )}
@@ -568,6 +907,9 @@ const styles = {
   },
   list: { display: "grid", gap: "8px" },
   item: { padding: "10px", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "10px" },
+  evidenceTitleRow: { display: "flex", justifyContent: "space-between", gap: "10px", flexWrap: "wrap" },
+  evidenceMeta: { color: "#9fb1d3", fontSize: "13px" },
+  assignRow: { display: "grid", gridTemplateColumns: "1fr auto", gap: "8px", marginTop: "10px", alignItems: "center" },
   adminCardGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "10px", marginTop: "8px" },
   adminOptionCard: {
     border: "1px solid rgba(255,255,255,0.14)",
@@ -593,6 +935,21 @@ const styles = {
     color: "#fecaca",
     fontWeight: 700,
     cursor: "pointer",
+  },
+  reportDownloadButton: {
+    border: "none",
+    padding: "9px 12px",
+    borderRadius: "10px",
+    color: "#e9eef7",
+    fontWeight: 700,
+    cursor: "pointer",
+  },
+  reportDownloadButtonReady: {
+    background: "#0b3f91",
+  },
+  reportDownloadButtonPending: {
+    background: "#6ea7ff",
+    cursor: "not-allowed",
   },
   toastSuccess: { color: "#34d399" },
   toastError: { color: "#f87171" },

@@ -10,17 +10,23 @@ const evidenceOptions = [
   { value: "cybercrime evidence", label: "Cybercrime Evidence" },
 ];
 
-const activityTypes = ["Walking", "Running", "Sleeping", "Resting"];
+const activityTypes = ["Walking", "Running", "Cycling", "Resting"];
 const cyberActivityTypes = [
   "Login",
-  "File Access",
-  "File Modification",
-  "File Deletion",
-  "Network Traffic",
-  "Remote Login",
-  "USB Insert",
+  "File_Access",
+  "File_Modification",
+  "File_Deletion",
+  "Network_Traffic",
+  "Remote_Login",
+  "USB_Insert",
 ];
 const anomalyTypes = ["Brute_Force", "DDoS_Attempt", "Data_Exfil", "USB_Access", "None"];
+
+function getDefaultLocalDateTime() {
+  const now = new Date();
+  const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+  return new Date(now.getTime() - offsetMs).toISOString().slice(0, 16);
+}
 
 export default function UploadEvidence() {
   const navigate = useNavigate();
@@ -64,14 +70,14 @@ export default function UploadEvidence() {
     fd.set("evidenceType", evidenceType);
 
     try {
-      await axios.post(`${API_BASE}/evidence/upload`, fd, {
+      const res = await axios.post(`${API_BASE}/evidence/upload`, fd, {
         headers: { ...authHeaders, "Content-Type": "multipart/form-data" },
       });
-      setMessage("Evidence uploaded successfully.");
+      setMessage(res.data?.message || "Evidence submitted successfully.");
       form.reset();
       setEvidenceType("");
     } catch (err) {
-      setError(err.response?.data?.error || "Failed to upload evidence");
+      setError(err.response?.data?.error || (err.response ? `Upload failed (HTTP ${err.response.status})` : "Cannot connect to backend /api/evidence/upload"));
     } finally {
       setSubmitting(false);
     }
@@ -121,13 +127,21 @@ export default function UploadEvidence() {
 
             {evidenceType === "wearable biometric evidence" && (
               <>
-                <label style={styles.label}>Timestamp</label>
-                <input style={styles.input} type="datetime-local" name="timestamp" required />
-                <input style={styles.input} name="heartRate" type="number" placeholder="Heart Rate (bpm)" required />
+                <label style={styles.label}>timestamp</label>
+                <input
+                  style={styles.input}
+                  type="datetime-local"
+                  name="timestamp"
+                  required
+                  defaultValue={getDefaultLocalDateTime()}
+                  onKeyDown={(e) => e.preventDefault()}
+                  onPaste={(e) => e.preventDefault()}
+                />
+                <input style={styles.input} name="heartRate" type="number" step="0.1" placeholder="Heart Rate (bpm)" required />
                 <input style={styles.input} name="bloodOxygen" type="number" step="0.1" placeholder="Blood Oxygen (%)" required />
-                <input style={styles.input} name="bodyTemperature" type="number" step="0.1" placeholder="Body Temperature (�C)" required />
+                <input style={styles.input} name="bodyTemperature" type="number" step="0.1" placeholder="Body Temperature (°C)" required />
                 <input style={styles.input} name="respiratoryRate" type="number" step="0.1" placeholder="Respiratory Rate (breaths/min)" required />
-                <input style={styles.input} name="stepsCount" type="number" placeholder="Steps Count" required />
+                <input style={styles.input} name="stepsCount" type="number" step="1" placeholder="Steps Count" required />
                 <label style={styles.label}>Activity</label>
                 <select style={styles.select} name="activity" required defaultValue="">
                   <option value="">Select</option>
@@ -138,7 +152,7 @@ export default function UploadEvidence() {
 
             {evidenceType === "biometric identity evidence" && (
               <>
-                <label style={styles.label}>Face Image (PNG)</label>
+                <label style={styles.label}>Face Image</label>
                 <input style={styles.input} type="file" name="file" accept="image/png,image/*" required />
               </>
             )}
@@ -146,7 +160,15 @@ export default function UploadEvidence() {
             {evidenceType === "cybercrime evidence" && (
               <>
                 <label style={styles.label}>Timestamp</label>
-                <input style={styles.input} type="datetime-local" name="timestamp" required />
+                <input
+                  style={styles.input}
+                  type="datetime-local"
+                  name="timestamp"
+                  required
+                  defaultValue={getDefaultLocalDateTime()}
+                  onKeyDown={(e) => e.preventDefault()}
+                  onPaste={(e) => e.preventDefault()}
+                />
                 <input style={styles.input} name="userId" placeholder="User ID" required />
                 <input style={styles.input} name="ipAddress" placeholder="IP Address" required />
                 <label style={styles.label}>Activity Type</label>
@@ -154,13 +176,13 @@ export default function UploadEvidence() {
                   <option value="">Select</option>
                   {cyberActivityTypes.map((a) => <option key={a} value={a}>{a}</option>)}
                 </select>
-                <input style={styles.input} name="resourceAccessed" placeholder="Resource Accessed" required />
+                <input style={styles.input} name="resourceAccessed" placeholder="Resource Accessed" />
                 <input style={styles.input} name="fileName" placeholder="File Name (if applicable)" />
                 <input style={styles.input} name="action" placeholder="Action / Outcome" required />
                 <input style={styles.input} name="loginAttempts" type="number" placeholder="Login Attempts (if applicable)" />
                 <input style={styles.input} name="fileSize" type="number" placeholder="File Size (bytes)" />
                 <label style={styles.label}>Anomaly Type</label>
-                <select style={styles.select} name="anomalyType" required defaultValue="">
+                <select style={styles.select} name="anomalyType" defaultValue="">
                   <option value="">Select</option>
                   {anomalyTypes.map((a) => <option key={a} value={a}>{a}</option>)}
                 </select>
@@ -259,11 +281,6 @@ const styles = {
     color: "#e9eef7",
   },
   label: { fontWeight: 600, color: "#dbeafe" },
-  row: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "8px",
-  },
   buttonPrimary: {
     border: "none",
     padding: "10px 14px",
@@ -298,4 +315,3 @@ const styles = {
     borderRadius: "10px",
   },
 };
-
