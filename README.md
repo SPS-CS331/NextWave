@@ -14,7 +14,7 @@ This project uses software engineering concepts like requirement analysis, UML d
 
 
 ## Updates
-- Work till Assignment 5 has been completed.
+- Work till Assignment 6 has been completed.
 
 ## Parts Done
 - Requirements Analysis  
@@ -24,3 +24,4 @@ This project uses software engineering concepts like requirement analysis, UML d
 - 4 modules implemented: Authentication & Select Evidence Type, Manage Datasets & Upload Evidence
 - Architecture Chosen As Layered Architecture
 - Deployment Design and Component Interactions
+- User Interface and Interaction among UI components
