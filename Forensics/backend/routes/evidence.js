@@ -15,6 +15,7 @@ const ALLOWED_TYPES = [
   "face recognition",
 ];
 
+// Multer setup for evidence file uploads
 const uploadsDir = path.join(__dirname, "..", "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
@@ -114,6 +115,7 @@ function runBiometricModel(evidence) {
   const activity = String(input.activity || "");
 
   if ([hr, bo, bt, rr, st].every((v) => v === null) && !activity) {
+    // For non-wearable biometric uploads (like face evidence), still return a model output.
     return {
       datasetKeyword: "biometric",
       datasetPath,
@@ -207,7 +209,7 @@ function runPredictionForEvidence(evidence) {
   throw new Error("No matching dataset keyword found for this evidence");
 }
 
-
+// Create / upload evidence (Investigator/Admin)
 router.post("/", auth, requireRole("Investigator", "Administrator"), async (req, res) => {
   try {
     const { title, description, type, caseId } = req.body;
@@ -241,7 +243,7 @@ router.post("/", auth, requireRole("Investigator", "Administrator"), async (req,
   }
 });
 
-
+// List evidence (Admin: all, Investigator: own, Analyst: all for review)
 router.get("/", auth, async (req, res) => {
   let filter = {};
   if (req.user.role === "Investigator") {
@@ -253,7 +255,7 @@ router.get("/", auth, async (req, res) => {
   res.json(evidence);
 });
 
-
+// Add chain-of-custody event
 router.post("/:id/custody", auth, async (req, res) => {
   const { action, notes } = req.body;
   const evidence = await Evidence.findById(req.params.id);
@@ -279,7 +281,7 @@ router.get("/:id/custody", auth, async (req, res) => {
   res.json(evidence.custodyTrail || []);
 });
 
-
+// Start analysis for an evidence (Investigator/Admin)
 router.post("/:id/analysis", auth, requireRole("Investigator", "Administrator"), async (req, res) => {
   const evidence = await Evidence.findById(req.params.id);
   if (!evidence) return res.status(404).json({ error: "Evidence not found" });
@@ -296,7 +298,7 @@ router.post("/:id/analysis", auth, requireRole("Investigator", "Administrator"),
   });
 
   if (!isAssignedToAnalyst) {
-    
+    // Simulate immediate completion for demo purposes
     analysis.status = "completed";
     analysis.findings = `Automated findings for ${evidence.title} using ${analysis.modelUsed}`;
     await analysis.save();
@@ -313,7 +315,7 @@ router.post("/:id/analysis", auth, requireRole("Investigator", "Administrator"),
   res.status(201).json(analysis);
 });
 
-
+// List analyses (role scoped)
 router.get("/analyses/all", auth, async (req, res) => {
   let filter = {};
   if (req.user.role === "Investigator") {
@@ -332,7 +334,7 @@ router.get("/analyses/all", auth, async (req, res) => {
   res.json(analyses);
 });
 
-
+// Run model on assigned analysis (Analyst/Admin)
 router.post("/analyses/:analysisId/run-model", auth, requireRole("Analyst", "Administrator"), async (req, res) => {
   try {
     const analysis = await Analysis.findById(req.params.analysisId).populate("evidence");
@@ -380,7 +382,7 @@ router.post("/analyses/:analysisId/run-model", auth, requireRole("Analyst", "Adm
   }
 });
 
-
+// Structured evidence upload for investigators (multipart)
 router.post(
   "/upload",
   auth,
@@ -403,7 +405,7 @@ router.post(
       }
 
       let payload = {
-        
+        // Store the type exactly as selected during upload
         type: selectedEvidenceType,
         evidenceType: selectedEvidenceType,
         caseId: req.body.caseId,
@@ -513,7 +515,7 @@ router.post(
             uploadTimestamp: payload.uploadTimestamp,
           });
         } catch (faceErr) {
-          
+          // Keep main evidence saved even if the optional face-specific collection write fails.
           console.error("FaceRecognitionUpload create error:", faceErr.message);
         }
       }
