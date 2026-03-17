@@ -9,6 +9,6 @@ const logSchema = new mongoose.Schema(
     details: Object,
   },
   { timestamps: true }
-);a
+);
 
 module.exports = mongoose.model("Log", logSchema);
