@@ -10,6 +10,7 @@ function generateRoleId(role) {
   if (role === "Administrator") return `ADM-${rand}`;
   if (role === "Investigator") return `INV-${rand}`;
   return `ANL-${rand}`;
+  
 }
 
 router.post("/signup", async (req, res) => {
