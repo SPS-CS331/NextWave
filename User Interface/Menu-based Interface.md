@@ -7,7 +7,8 @@ For the Automated Digital Forensics Evidence Collection Tool, we use a hybrid us
 A menu-based interface allows users to interact with the system by selecting options from a set of predefined menus.
 
 <img width="642" height="277" alt="image" src="https://github.com/user-attachments/assets/b145d489-f202-4bec-ae86-00e16e0c804c" />
-
+<br/>
+<br/>
 <img width="764" height="224" alt="image" src="https://github.com/user-attachments/assets/391eb088-ebc7-4804-b94d-07e0e1e7ead4" />
 
 ---
