@@ -5,8 +5,7 @@ import axios from "axios";
 const API_BASE = "http://localhost:5000/api";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-   
+  const navigate = useNavigate(); 
   const [user, setUser] = useState(null);
   const [evidence, setEvidence] = useState([]);
   const [analyses, setAnalyses] = useState([]);
