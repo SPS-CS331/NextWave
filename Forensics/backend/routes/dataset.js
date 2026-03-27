@@ -9,7 +9,7 @@ const router = express.Router();
 const FACE_IMAGES_DIR = path.resolve(__dirname, "../../frontend/public/datasets/face-images");
 const MAX_FACE_IMAGES = 20;
 
-// Create dataset (Admin)
+
 router.post("/", auth, requireRole("Administrator"), async (req, res) => {
   const { name, description, tags = [] } = req.body;
   if (!name) return res.status(400).json({ error: "Name is required" });
@@ -18,13 +18,13 @@ router.post("/", auth, requireRole("Administrator"), async (req, res) => {
   res.status(201).json(dataset);
 });
 
-// List datasets (all roles)
+
 router.get("/", auth, async (_req, res) => {
   const items = await Dataset.find().sort({ createdAt: -1 });
   res.json(items);
 });
 
-// List face-recognition image files (first 100) for gallery view
+
 router.get("/face-images", auth, async (_req, res) => {
   try {
     const entries = await fs.readdir(FACE_IMAGES_DIR, { withFileTypes: true });
@@ -45,7 +45,7 @@ router.get("/face-images", auth, async (_req, res) => {
   }
 });
 
-// Update dataset (Admin)
+
 router.put("/:id", auth, requireRole("Administrator"), async (req, res) => {
   const { name, description, tags = [] } = req.body;
   if (!name) return res.status(400).json({ error: "Name is required" });
@@ -59,7 +59,7 @@ router.put("/:id", auth, requireRole("Administrator"), async (req, res) => {
   res.json(updated);
 });
 
-// Delete dataset (Admin)
+
 router.delete("/:id", auth, requireRole("Administrator"), async (req, res) => {
   await Dataset.findByIdAndDelete(req.params.id);
   await addLog({ actor: req.user._id, action: "dataset_deleted", entityType: "Dataset", entityId: req.params.id });
