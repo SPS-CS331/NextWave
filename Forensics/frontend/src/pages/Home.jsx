@@ -28,7 +28,7 @@ export default function Home() {
     return token ? { Authorization: `Bearer ${token}` } : {};
   }, []);
 
-  // Bootstrap the page: fetch current user and dependent data
+
   useEffect(() => {
     const bootstrap = async () => {
       try {
