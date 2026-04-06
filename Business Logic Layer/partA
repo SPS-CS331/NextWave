@@ -1,1 +1,193 @@
+# Business Logic Layer (BLL)
 
+The **Business Logic Layer (BLL)** is a core part of our system. It sits between the **UI (Frontend)** and the **Database (Data Layer)**. In other words, BLL is the brain of the system that controls how data is processed and what actions are allowed.
+
+## What it does:
+- Decides who can do what (role-based access management)
+- Checks whether the input data is valid
+- Controls the sequence of operations or data processing
+- Maintains logs (audit trail maintained by the system administrator)
+- Manages workflows:
+
+
+Upload Evidence → Assign Analyst → Run ML Model → Generate Report
+
+
+---
+
+# Core Functional Modules in BLL
+
+## 1. Authentication & Role Enforcement
+
+- Verifies user identity using JWT tokens  
+- Uses RBAC (Role-Based Access Control)  
+- Prevents unauthorized access  
+
+**Roles:**
+- Investigator → can upload evidence  
+- Analyst → can run analysis  
+- Admin → full access  
+
+---
+
+## 2. Evidence Management Module
+
+Validates uploaded evidence and ensures structured storage.
+
+### Functions:
+- Stores evidence in database  
+- Records custody information  
+- Validates required fields  
+
+### Examples:
+- Checks if Case ID exists  
+- Validates evidence types:
+  - Wearable biometrics (tampering detection)
+  - Fingerprint to face recognition
+  - Cybercrime classification  
+
+---
+
+## 3. Analysis Lifecycle Module
+
+Controls how analysis is performed.
+
+### Functions:
+- Analyst starts analysis  
+- Admin assigns analyst  
+- Tracks status:
+  - Pending
+  - Running
+  - Completed  
+
+### Rules:
+- Only assigned analyst can run analysis  
+- Admin can override  
+
+---
+
+## 4. Machine Learning Inference Module
+
+Connects system with ML models.
+
+### Functions:
+- Prepares data  
+- Calls Python ML scripts  
+- Returns predictions  
+
+**Example:**
+
+Input → wearable data
+Output → normal / tampered + confidence
+
+
+---
+
+## 5. Report Generation Module
+
+Generates final investigation reports.
+
+### Functions:
+- Creates forensic reports  
+- Links report with evidence & analysis  
+- Controls access  
+
+**Example:**
+- Analyst generates report  
+- Investigator views report  
+
+---
+
+## 6. Dataset Catalogue Module
+
+- Stores available datasets  
+- Filters datasets (based on selection)  
+- Used in UI for dataset selection  
+
+---
+
+## 7. Audit Logging Module
+
+Ensures traceability and accountability.
+
+### Features:
+- Tracks all user actions  
+- Maintained by system administrator  
+- Logs cannot be edited by anyone  
+
+### Examples:
+- Evidence upload  
+- Model execution  
+- Report generation  
+
+---
+
+# Interaction with Presentation Layer (UI)
+
+## UI → BLL Communication
+
+Frontend sends API requests:
+
+- `POST /api/evidence`
+- `GET /api/evidence/analyses/all`
+- `POST /api/ml/run`
+- `GET /api/reports`
+- `GET /api/logs`
+
+---
+
+## Interaction Flow
+
+### 1. Upload Evidence
+
+UI Form → API → BLL validates → Store in DB → Response → UI updates
+
+
+### 2. Assign Analyst
+
+UI → API → BLL updates assignment → UI shows assigned analyst
+
+
+### 3. Run ML Model
+
+UI → API → BLL calls Python model → Result → UI shows prediction
+
+
+**Output Example:**
+- Model name  
+- Tampered / Normal  
+- Confidence score  
+
+### 4. Generate Report
+
+UI → API → BLL creates report → UI shows download option
+
+
+---
+
+# Error Handling
+
+BLL handles errors such as:
+- Missing fields  
+- Wrong role  
+- Model errors  
+
+Frontend displays appropriate error messages.
+
+---
+
+# Why BLL is Important
+
+## 1. Consistency
+All rules are defined in one place. UI cannot bypass them.
+
+## 2. Security
+RBAC ensures only authorized users access data and services.
+
+## 3. Auditability
+All actions are logged. Only admin can view logs (cannot edit).
+
+## 4. Maintainability
+Changes are made only in BLL without affecting UI.
+
+---
