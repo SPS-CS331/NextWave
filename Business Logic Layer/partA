@@ -1,4 +1,4 @@
-# Business Logic Layer (BLL)
+## Business Logic Layer (BLL)
 
 The **Business Logic Layer (BLL)** is a core part of our system. It sits between the **UI (Frontend)** and the **Database (Data Layer)**. In other words, BLL is the brain of the system that controls how data is processed and what actions are allowed.
 
