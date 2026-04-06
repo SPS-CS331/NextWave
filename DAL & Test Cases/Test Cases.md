@@ -15,7 +15,7 @@ Black Box Testing is a software testing technique in which the internal structur
    User must be able to access the dashboard only with valid credentials for role-based accessibility.<br/>
    Input: Correct email, password, and role-ID.<br/>
    Expected Output: Log in successful or unsuccessful depending on user entry.<br/>
-     <img width="614" height="537" alt="image" src="https://github.com/user-attachments/assets/d49f82f2-dfd5-49d5-aec0-7156f76a8bc5" />
+     <img width="475" alt="image" src="https://github.com/user-attachments/assets/d49f82f2-dfd5-49d5-aec0-7156f76a8bc5" />
 
 2. **Valid Evidence Upload**<br/>
    Investigator must not be able upload evidence with same ID.
@@ -44,13 +44,13 @@ White Box Testing is a software testing technique in which the internal structur
     -	Valid email + valid password → success
     -	Valid email + wrong password → fail
     -	Invalid email → fail
-      <img width="802" height="465" alt="image" src="https://github.com/user-attachments/assets/593bcc93-1035-4d4f-b0a5-2a13bde01a61" />
+      <img width="675" alt="image" src="https://github.com/user-attachments/assets/593bcc93-1035-4d4f-b0a5-2a13bde01a61" />
 
 
 2. **Role-Based Access Logic**<br/>
    Logic Tested:     **if (role == Admin / Analyst / Investigator)**
    Expected Result: Correct permissions assigned for each role.
-     <img width="940" height="299" alt="image" src="https://github.com/user-attachments/assets/679cbeb6-9068-4caa-9ac8-e1c744b6cfd6" />
+     <img width="775" alt="image" src="https://github.com/user-attachments/assets/679cbeb6-9068-4caa-9ac8-e1c744b6cfd6" />
 
 
 4. **File Validation Logic**<br/>
