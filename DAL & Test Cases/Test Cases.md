@@ -15,6 +15,8 @@ Black Box Testing is a software testing technique in which the internal structur
    User must be able to access the dashboard only with valid credentials for role-based accessibility.<br/>
    Input: Correct email, password, and role-ID.<br/>
    Expected Output: Log in successful or unsuccessful depending on user entry.<br/>
+     <img width="614" height="537" alt="image" src="https://github.com/user-attachments/assets/d49f82f2-dfd5-49d5-aec0-7156f76a8bc5" />
+
 2. **Valid Evidence Upload**<br/>
    Investigator must not be able upload evidence with same ID.
    Input: Upload evidence with an evidence-ID that has already been used previously.
@@ -23,6 +25,8 @@ Black Box Testing is a software testing technique in which the internal structur
    Evidence analysis report must be shown only to the corresponding investigator, and not accessible by other users or investigators.
    Input: Completed analysis by forensic investigator, and generate report.
    Expected Output: Downloadable report accessible only to the respective investigator.
+     <img width="940" height="266" alt="image" src="https://github.com/user-attachments/assets/fca981ab-c132-417a-b309-21341c35d463" />
+
 
 ---
 
@@ -40,12 +44,16 @@ White Box Testing is a software testing technique in which the internal structur
     -	Valid email + valid password → success
     -	Valid email + wrong password → fail
     -	Invalid email → fail
+      <img width="802" height="465" alt="image" src="https://github.com/user-attachments/assets/593bcc93-1035-4d4f-b0a5-2a13bde01a61" />
+
 
 2. **Role-Based Access Logic**<br/>
    Logic Tested:     **if (role == Admin / Analyst / Investigator)**
    Expected Result: Correct permissions assigned for each role.
+     <img width="940" height="299" alt="image" src="https://github.com/user-attachments/assets/679cbeb6-9068-4caa-9ac8-e1c744b6cfd6" />
 
-3. **File Validation Logic**<br/>
+
+4. **File Validation Logic**<br/>
    Logic Tested:     **if (file_type == allowed && file_size < limit)**
    Test Cases:
     -	Valid type & size → accept,
