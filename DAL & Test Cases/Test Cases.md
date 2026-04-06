@@ -11,7 +11,7 @@ Black Box Testing is a software testing technique in which the internal structur
  -	Based on requirements and specifications
 <br/>
 
-1. **Valid Login / Authentication**
+1. **Valid Login / Authentication**<br/>
    User must be able to access the dashboard only with valid credentials for role-based accessibility.<br/>
    Input: Correct email, password, and role-ID.<br/>
    Expected Output: Log in successful or unsuccessful depending on user entry.<br/>
@@ -23,11 +23,9 @@ Black Box Testing is a software testing technique in which the internal structur
    Evidence analysis report must be shown only to the corresponding investigator, and not accessible by other users or investigators.
    Input: Completed analysis by forensic investigator, and generate report.
    Expected Output: Downloadable report accessible only to the respective investigator.
-<br/>
-<br/>
+
 ---
-<br/>
-<br/>
+
 ## White Box Testing Test Cases
 
 White Box Testing is a software testing technique in which the internal structure, logic, and code of the system are fully visible to the tester. Key Characteristics of white box testing:
