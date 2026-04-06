@@ -19,6 +19,13 @@ Upload Evidence → Assign Analyst → Run ML Model → Generate Report
 
 ## 1. Authentication & Role Enforcement
 
+<p align="center">
+  <img src="images/dashboard.png" width="900"/>
+  <br>
+  <em>Figure 1: Admin Dashboard</em>
+</p>
+
+
 - Verifies user identity using JWT tokens  
 - Uses RBAC (Role-Based Access Control)  
 - Prevents unauthorized access  
