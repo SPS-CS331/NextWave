@@ -11,15 +11,15 @@ Black Box Testing is a software testing technique in which the internal structur
  -	Based on requirements and specifications
 <br/>
 <br/>
-1. **Valid Login Test**<br/>
+1. **Valid Login Test**
    User must be able to access the dashboard only with valid credentials for role-based accessibility.<br/>
    Input: Correct email, password, and role-ID.<br/>
    Expected Output: Log in successful or unsuccessful depending on user entry.<br/>
-2. **Valid Evidence Upload**<br/>
+2. **Valid Evidence Upload**
    Investigator must not be able upload evidence with same ID.
    Input: Upload evidence with an evidence-ID that has already been used previously.
    Expected Output: File upload is unsuccessful and shows error/alert.
-3. **Report Generation**<br/>
+3. **Report Generation**
    Evidence analysis report must be shown only to the corresponding investigator, and not accessible by other users or investigators.
    Input: Completed analysis by forensic investigator, and generate report.
    Expected Output: Downloadable report accessible only to the respective investigator.
