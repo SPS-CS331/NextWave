@@ -34,6 +34,12 @@ Upload Evidence → Assign Analyst → Run ML Model → Generate Report
 
 Validates uploaded evidence and ensures structured storage.
 
+<p align="center">
+  <img src="images/upload.png" width="850"/>
+  <br>
+  <em>Figure 2: Evidence Upload Interface</em>
+</p>
+
 ### Functions:
 - Stores evidence in database  
 - Records custody information  
@@ -51,6 +57,11 @@ Validates uploaded evidence and ensures structured storage.
 ## 3. Analysis Lifecycle Module
 
 Controls how analysis is performed.
+<p align="center">
+  <img src="images/analysis.png" width="850"/>
+  <br>
+  <em>Figure 3: Analysis Execution Screen</em>
+</p>
 
 ### Functions:
 - Analyst starts analysis  
@@ -69,6 +80,12 @@ Controls how analysis is performed.
 ## 4. Machine Learning Inference Module
 
 Connects system with ML models.
+<p align="center">
+  <img src="images/ml.png" width="850"/>
+  <br>
+  <em>Figure 4: Report Generation Interface</em>
+</p>
+
 
 ### Functions:
 - Prepares data  
@@ -86,6 +103,13 @@ Output → normal / tampered + confidence
 ## 5. Report Generation Module
 
 Generates final investigation reports.
+
+<p align="center">
+  <img src="images/report.png" width="850"/>
+  <br>
+  <em>Figure 4: Report Generation Interface</em>
+</p>
+
 
 ### Functions:
 - Creates forensic reports  
