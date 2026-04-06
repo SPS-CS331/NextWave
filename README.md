@@ -26,4 +26,4 @@ This project uses software engineering concepts like requirement analysis, UML d
 - Deployment Design and Component Interactions
 - User Interface and Interaction among UI components
 - Data Access Layer (DAL)
-- Black box and White box Test Cases (for Testing Phase)
+- Black box and White box Test Cases (for Testing Phase)(UpToDate)
