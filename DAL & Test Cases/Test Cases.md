@@ -10,8 +10,8 @@ Black Box Testing is a software testing technique in which the internal structur
  -	Tests system behaviour from user’s perspective 
  -	Based on requirements and specifications
 <br/>
-<br/>
-1. **Valid Login Test**
+
+1. **Valid Login / Authentication**
    User must be able to access the dashboard only with valid credentials for role-based accessibility.<br/>
    Input: Correct email, password, and role-ID.<br/>
    Expected Output: Log in successful or unsuccessful depending on user entry.<br/>
