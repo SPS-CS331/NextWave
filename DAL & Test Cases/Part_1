@@ -1,4 +1,4 @@
-#     Data Access Layer (DAL)
+#  Data Access Layer (DAL)
 
 ## 1. Introduction to DAL
 
@@ -62,7 +62,6 @@ mongoose.connect(MONGO_URI)
 ### Models Location:
 
 backend/models/
-
 
 ### Main Models:
 - User.js  
