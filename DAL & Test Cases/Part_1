@@ -1,4 +1,4 @@
-#  Data Access Layer (DAL)
+# Data Access Layer (DAL)
 
 ## 1. Introduction to DAL
 
@@ -29,7 +29,6 @@ Instead of writing raw queries everywhere, all database logic is centralized in 
 
 ---
 
-
 ## 3. DAL in Forensics Project
 
 ### Technologies Used:
@@ -52,55 +51,54 @@ Instead of writing raw queries everywhere, all database logic is centralized in 
 The backend establishes connection using:
 
 ```js
-mongoose.connect(MONGO_URI)
-##  Collections and Schema Design
+mongoose.connect(MONGO_URI);
+```
+
+---
+
+## 5. Collections and Schema Design
 
 ### MongoDB Mapping:
 - Tables → Collections  
 - Rows → Documents  
 
 ### Models Location:
-
+```
 backend/models/
+```
 
 ### Main Models:
-- User.js  
-
+#### User.js  
 <p align="center">
   <img src="images/user.png" width="850"/>
-  <br>
 </p>
 
-- Dataset.js
-
+#### Dataset.js  
 <p align="center">
   <img src="images/data.png" width="850"/>
-  <br>
 </p>
 
-- Evidence.js
+#### Evidence.js  
 <p align="center">
   <img src="images/evidence.png" width="850"/>
-  <br>
 </p>
 
-- Analysis.js 
+#### Analysis.js  
 <p align="center">
   <img src="images/analysis.png" width="850"/>
-  <br>
 </p>
 
-- Report.js  
+#### Report.js  
 <p align="center">
   <img src="images/report.png" width="850"/>
-  <br>
 </p>
 
-- Log.js  
+#### Log.js  
 <p align="center">
   <img src="images/logs.png" width="850"/>
-  <br>
 </p>
+
+---
 
 
 ### What Each Model Defines:
@@ -117,19 +115,23 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String
 });
-##  DAL Usage in Project Files
-
-###  Authentication (routes/auth.js)
-- findOne() → Check if user exists  
-- create() → Register new user  
+```
 
 ---
 
-###  Dataset Management (routes/datasets.js)
-- create() → Add dataset  
-- find() → Fetch datasets  
-- findByIdAndUpdate() → Update dataset  
-- findByIdAndDelete() → Delete dataset  
+## 6. DAL Usage in Project Files
+
+### Authentication (routes/auth.js)
+- `findOne()` → Check if user exists  
+- `create()` → Register new user  
+
+---
+
+### Dataset Management (routes/datasets.js)
+- `create()` → Add dataset  
+- `find()` → Fetch datasets  
+- `findByIdAndUpdate()` → Update dataset  
+- `findByIdAndDelete()` → Delete dataset  
 
 ---
 
@@ -139,14 +141,19 @@ const userSchema = new mongoose.Schema({
 
 ---
 
-###  Report Handling (routes/reports.js)
+### Report Handling (routes/reports.js)
 - Retrieves reports  
 - Uses `.populate()` to join related collections  
 
 #### Example:
+
 ```js
-Report.find().populate('user dataset')
-## 🧾 Logging System (utils/logger.js)
+Report.find().populate('user dataset');
+```
+
+---
+
+## 7. Logging System (utils/logger.js)
 
 - Stores logs in Log collection  
 
@@ -157,7 +164,7 @@ Report.find().populate('user dataset')
 
 ---
 
-##  Error Handling
+## 8. Error Handling
 
 - Missing fields  
 - Invalid queries  
@@ -167,7 +174,7 @@ Errors are handled and returned to the application layer.
 
 ---
 
-##  Importance of DAL
+## 9. Importance of DAL
 
 ### Separation of Concerns
 Keeps database logic separate from application logic  
@@ -176,9 +183,7 @@ Keeps database logic separate from application logic
 Prevents direct database access  
 
 ### Maintainability
-Changes only needed in  DAL  
+Changes only needed in DAL  
 
 ### Scalability
 Supports system growth efficiently  
-
----
