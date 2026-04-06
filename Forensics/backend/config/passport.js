@@ -1,4 +1,4 @@
-//not needed for our project
+//not needed for our project as we have not implemented the google auth part because normal user not gonna use its only for cyber crime department
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");

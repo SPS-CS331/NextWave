@@ -22,13 +22,13 @@ export default function Home() {
   const [error, setError] = useState("");
   const [adminDatasetView, setAdminDatasetView] = useState("face");
 
-  // Auth header built once from the token saved by the login page
+  
   const authHeaders = useMemo(() => {
     const token = localStorage.getItem("token");
     return token ? { Authorization: `Bearer ${token}` } : {};
   }, []);
 
-  // Bootstrap the page: fetch current user and dependent data
+
   useEffect(() => {
     const bootstrap = async () => {
       try {
