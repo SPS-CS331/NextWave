@@ -15,11 +15,11 @@ Black Box Testing is a software testing technique in which the internal structur
    User must be able to access the dashboard only with valid credentials for role-based accessibility.<br/>
    Input: Correct email, password, and role-ID.<br/>
    Expected Output: Log in successful or unsuccessful depending on user entry.<br/>
-2. **Valid Evidence Upload**
+2. **Valid Evidence Upload**<br/>
    Investigator must not be able upload evidence with same ID.
    Input: Upload evidence with an evidence-ID that has already been used previously.
    Expected Output: File upload is unsuccessful and shows error/alert.
-3. **Report Generation**
+3. **Report Generation**<br/>
    Evidence analysis report must be shown only to the corresponding investigator, and not accessible by other users or investigators.
    Input: Completed analysis by forensic investigator, and generate report.
    Expected Output: Downloadable report accessible only to the respective investigator.
@@ -34,22 +34,20 @@ White Box Testing is a software testing technique in which the internal structur
  -	Tests conditions, loops, and execution paths 
  -	Performed by developers or testers with code access
 
-1. **Login Condition Check**
+1. **Login Condition Check**<br/>
    Logic Tested:     **if (email exists && password correct)**
    Test Cases:
     -	Valid email + valid password → success
     -	Valid email + wrong password → fail
     -	Invalid email → fail
 
-2. **Role-Based Access Logic**
+2. **Role-Based Access Logic**<br/>
    Logic Tested:     **if (role == Admin / Analyst / Investigator)**
    Expected Result: Correct permissions assigned for each role.
 
-3. **File Validation Logic**
+3. **File Validation Logic**<br/>
    Logic Tested:     **if (file_type == allowed && file_size < limit)**
    Test Cases:
     -	Valid type & size → accept,
     -	Invalid type → reject,
     -	Exceed size → reject.
-
----
