@@ -2,12 +2,12 @@
 
 ## 1. Introduction to DAL
 
-The Data Access Layer (DAL) is a key architectural component in software systems that acts as an intermediate layer between the application logic and the database.
+The Data Access Layer (DAL) is an architectural component that acts as a bridge between application logic and the database.
 
 ### Purpose:
 - Abstract database operations  
 - Encapsulate data access logic  
-- Prevent direct interaction with the database  
+- Prevent direct database interaction  
 
 This follows the principle of **Separation of Concerns**, making the system:
 - Easier to maintain  
@@ -25,7 +25,7 @@ The DAL is responsible for:
 - Enforcing data consistency and validation  
 - Handling queries and transactions  
 
-Instead of writing raw queries everywhere, all database logic is centralized in the DAL.
+All database-related logic is centralized in this layer instead of being scattered across the application.
 
 ---
 
@@ -48,7 +48,7 @@ Instead of writing raw queries everywhere, all database logic is centralized in 
 
 ## 4. Database Creation and Connection
 
-The backend establishes connection using:
+The backend connects to the database using:
 
 ```js
 mongoose.connect(MONGO_URI);
@@ -67,39 +67,41 @@ mongoose.connect(MONGO_URI);
 backend/models/
 ```
 
-### Main Models:
-#### User.js  
+---
+
+## 6. Main Models
+
+### User.js  
 <p align="center">
   <img src="images/user.png" width="850"/>
 </p>
 
-#### Dataset.js  
+### Dataset.js  
 <p align="center">
   <img src="images/data.png" width="850"/>
 </p>
 
-#### Evidence.js  
+### Evidence.js  
 <p align="center">
   <img src="images/evidence.png" width="850"/>
 </p>
 
-#### Analysis.js  
+### Analysis.js  
 <p align="center">
   <img src="images/analysis.png" width="850"/>
 </p>
 
-#### Report.js  
+### Report.js  
 <p align="center">
   <img src="images/report.png" width="850"/>
 </p>
 
-#### Log.js  
+### Log.js  
 <p align="center">
   <img src="images/logs.png" width="850"/>
 </p>
 
 ---
-
 
 ### What Each Model Defines:
 - Field names and data types  
@@ -107,7 +109,7 @@ backend/models/
 - Default values  
 - Relationships (references)  
 
-### Example:
+### Example Schema:
 
 ```js
 const userSchema = new mongoose.Schema({
@@ -119,7 +121,7 @@ const userSchema = new mongoose.Schema({
 
 ---
 
-## 6. DAL Usage in Project Files
+## 7. DAL Usage in Project Files
 
 ### Authentication (routes/auth.js)
 - `findOne()` → Check if user exists  
@@ -145,15 +147,13 @@ const userSchema = new mongoose.Schema({
 - Retrieves reports  
 - Uses `.populate()` to join related collections  
 
-#### Example:
-
 ```js
 Report.find().populate('user dataset');
 ```
 
 ---
 
-## 7. Logging System (utils/logger.js)
+## 8. Logging System (utils/logger.js)
 
 - Stores logs in Log collection  
 
@@ -164,17 +164,18 @@ Report.find().populate('user dataset');
 
 ---
 
-## 8. Error Handling
+## 9. Error Handling
 
+The DAL manages:
 - Missing fields  
 - Invalid queries  
 - Database connection issues  
 
-Errors are handled and returned to the application layer.
+Errors are handled and passed to the application layer in a structured format.
 
 ---
 
-## 9. Importance of DAL
+## 10. Importance of DAL
 
 ### Separation of Concerns
 Keeps database logic separate from application logic  
@@ -183,7 +184,7 @@ Keeps database logic separate from application logic
 Prevents direct database access  
 
 ### Maintainability
-Changes only needed in DAL  
+Changes required only in DAL  
 
 ### Scalability
-Supports system growth efficiently  
+Supports future system expansion efficiently  
