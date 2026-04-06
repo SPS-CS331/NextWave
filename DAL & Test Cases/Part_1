@@ -29,6 +29,7 @@ Instead of writing raw queries everywhere, all database logic is centralized in 
 
 ---
 
+
 ## 3. DAL in Forensics Project
 
 ### Technologies Used:
