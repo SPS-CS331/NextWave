@@ -179,7 +179,7 @@ Keeps database logic separate from application logic
 Prevents direct database access  
 
 ### Maintainability
-Changes only needed in DAL  
+Changes only needed in  DAL  
 
 ### Scalability
 Supports system growth efficiently  
