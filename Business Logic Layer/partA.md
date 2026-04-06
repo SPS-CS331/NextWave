@@ -20,7 +20,7 @@ Upload Evidence → Assign Analyst → Run ML Model → Generate Report
 ## 1. Authentication & Role Enforcement
 
 <p align="center">
-  <img src="images/dashboard.png" width="900"/>
+  <img src="dashboard.png" width="900"/>
   <br>
   <em>Figure 1: Admin Dashboard</em>
 </p>
@@ -42,7 +42,7 @@ Upload Evidence → Assign Analyst → Run ML Model → Generate Report
 Validates uploaded evidence and ensures structured storage.
 
 <p align="center">
-  <img src="images/upload.png" width="850"/>
+  <img src="upload.png" width="850"/>
   <br>
   <em>Figure 2: Evidence Upload Interface</em>
 </p>
@@ -65,7 +65,7 @@ Validates uploaded evidence and ensures structured storage.
 
 Controls how analysis is performed.
 <p align="center">
-  <img src="images/analysis.png" width="850"/>
+  <img src="analysis.png" width="850"/>
   <br>
   <em>Figure 3: Analysis Execution Screen</em>
 </p>
@@ -88,7 +88,7 @@ Controls how analysis is performed.
 
 Connects system with ML models.
 <p align="center">
-  <img src="images/ml.png" width="850"/>
+  <img src="ml.png" width="850"/>
   <br>
   <em>Figure 4: Report Generation Interface</em>
 </p>
