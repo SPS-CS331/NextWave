@@ -112,7 +112,7 @@ Output → normal / tampered + confidence
 Generates final investigation reports.
 
 <p align="center">
-  <img src="images/report.png" width="850"/>
+  <img src="report.png" width="850"/>
   <br>
   <em>Figure 4: Report Generation Interface</em>
 </p>
