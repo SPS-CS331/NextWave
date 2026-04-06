@@ -53,8 +53,6 @@ The backend establishes connection using:
 
 ```js
 mongoose.connect(MONGO_URI)
-
-
 ##  Collections and Schema Design
 
 ### MongoDB Mapping:
@@ -119,8 +117,6 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String
 });
-
-
 ##  DAL Usage in Project Files
 
 ###  Authentication (routes/auth.js)
@@ -150,8 +146,6 @@ const userSchema = new mongoose.Schema({
 #### Example:
 ```js
 Report.find().populate('user dataset')
-
-
 ## 🧾 Logging System (utils/logger.js)
 
 - Stores logs in Log collection  
