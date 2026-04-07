@@ -146,14 +146,6 @@ Data transformation converts raw data into usable formats across system layers.
 
 ---
 
-### 4. Visualization Transformation
-- Charts and graphs (bar, pie, etc.)  
-- Confidence scores as percentages  
-- Comparative analysis  
-- User-friendly formatting  
-
----
-
 ### 5. Report Formatting
 - Structured sections:
   - Summary  
