@@ -19,6 +19,13 @@ Upload Evidence → Assign Analyst → Run ML Model → Generate Report
 
 ## 1. Authentication & Role Enforcement
 
+<p align="center">
+  <img src="dashboard.png" width="900"/>
+  <br>
+  <em>Figure 1: Admin Dashboard</em>
+</p>
+
+
 - Verifies user identity using JWT tokens  
 - Uses RBAC (Role-Based Access Control)  
 - Prevents unauthorized access  
@@ -33,6 +40,12 @@ Upload Evidence → Assign Analyst → Run ML Model → Generate Report
 ## 2. Evidence Management Module
 
 Validates uploaded evidence and ensures structured storage.
+
+<p align="center">
+  <img src="upload.png" width="850"/>
+  <br>
+  <em>Figure 2: Evidence Upload Interface</em>
+</p>
 
 ### Functions:
 - Stores evidence in database  
@@ -51,6 +64,11 @@ Validates uploaded evidence and ensures structured storage.
 ## 3. Analysis Lifecycle Module
 
 Controls how analysis is performed.
+<p align="center">
+  <img src="analysis.png" width="850"/>
+  <br>
+  <em>Figure 3: Analysis Execution Screen</em>
+</p>
 
 ### Functions:
 - Analyst starts analysis  
@@ -69,6 +87,12 @@ Controls how analysis is performed.
 ## 4. Machine Learning Inference Module
 
 Connects system with ML models.
+<p align="center">
+  <img src="ml.png" width="850"/>
+  <br>
+  <em>Figure 4: Report Generation Interface</em>
+</p>
+
 
 ### Functions:
 - Prepares data  
@@ -86,6 +110,13 @@ Output → normal / tampered + confidence
 ## 5. Report Generation Module
 
 Generates final investigation reports.
+
+<p align="center">
+  <img src="report.png" width="850"/>
+  <br>
+  <em>Figure 4: Report Generation Interface</em>
+</p>
+
 
 ### Functions:
 - Creates forensic reports  
