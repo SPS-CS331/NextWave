@@ -94,8 +94,7 @@ Connects system with ML models.
 </p>
 
 
-### Functions:
-- Prepares data  
+### Functions: 
 - Calls Python ML scripts  
 - Returns predictions  
 
