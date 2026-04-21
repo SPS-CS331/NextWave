@@ -128,7 +128,6 @@ Data transformation converts raw data into usable formats across system layers.
 - Preprocessing:
   - Image resizing  
   - Noise removal  
-  - Normalization  
 - Feature extraction (facial features, patterns, biometrics)  
 - Conversion to tensors/arrays  
 - Standardization of inputs  
@@ -150,7 +149,8 @@ Data transformation converts raw data into usable formats across system layers.
 - Structured sections:
   - Summary  
   - Evidence Description  
-  - Analysis Findings  
+  - Analysis Findings
+  - report generation
 - Human-readable format  
 - Standardized for legal/documentation use  
 
