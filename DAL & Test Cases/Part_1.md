@@ -33,7 +33,7 @@ All database-related logic is centralized in this layer instead of being scatter
 
 ### Technologies Used:
 - MongoDB → Database  
-- Mongoose → Object Data Modeling (ODM)
+- Mongoose → Object Data Modeling
 
 ### Why MongoDB + Mongoose?
 
@@ -107,7 +107,7 @@ backend/models/
 - Field names and data types  
 - Required fields  
 - Default values  
-- Relationships (references)  
+- Relationships   
 
 ### Example Schema:
 
