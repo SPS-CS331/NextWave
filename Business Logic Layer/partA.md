@@ -94,8 +94,7 @@ Connects system with ML models.
 </p>
 
 
-### Functions:
-- Prepares data  
+### Functions: 
 - Calls Python ML scripts  
 - Returns predictions  
 
@@ -120,7 +119,7 @@ Generates final investigation reports.
 
 ### Functions:
 - Creates forensic reports  
-- Links report with evidence & analysis  
+- Links report with evidence
 - Controls access  
 
 **Example:**
