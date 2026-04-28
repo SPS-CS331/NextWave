@@ -1,0 +1,90 @@
+[
+  {
+    "Test Case ID": "TC1",
+    "Steps": "1. Login as Investigator. 2. Upload face image. 3. Upload same face image again.",
+    "Input": "Same PNG face file uploaded twice with caseId FACE-DUP-001.",
+    "Expected Result": "System flags duplicate entry.",
+    "Actual Result": "First upload HTTP 201; second upload HTTP 201. Duplicate was accepted.",
+    "Expected Outcome": "Fail",
+    "Status": "Fail",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc1.png"
+  },
+  {
+    "Test Case ID": "TC2",
+    "Steps": "1. Login as Investigator. 2. Upload wearable evidence with evidence/case number. 3. Repeat with same evidence/case number.",
+    "Input": "Two wearable submissions with caseId EVID-DUP-001.",
+    "Expected Result": "System rejects duplicate.",
+    "Actual Result": "First upload HTTP 201; second upload HTTP 201. Duplicate number was accepted.",
+    "Expected Outcome": "Fail",
+    "Status": "Fail",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc2.png"
+  },
+  {
+    "Test Case ID": "TC3",
+    "Steps": "1. Submit four Administrator signup requests. 2. Check whether the fourth is blocked.",
+    "Input": "Four Administrator users.",
+    "Expected Result": "Restrict beyond 3 admins.",
+    "Actual Result": "Signup HTTP statuses: 201, 201, 201, 201. Fourth admin was created.",
+    "Expected Outcome": "Fail",
+    "Status": "Fail",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc3.png"
+  },
+  {
+    "Test Case ID": "TC4",
+    "Steps": "1. Upload cybercrime CSV. 2. Upload cybercrime PNG as CSV input. 3. Upload biometric PNG/JPEG. 4. Upload biometric CSV.",
+    "Input": "Cybercrime: .csv valid, .png invalid. Fingerprint/biometric: .png/.jpeg valid, .csv invalid.",
+    "Expected Result": "Only valid file types accepted.",
+    "Actual Result": "Cyber CSV 201; cyber PNG 400; biometric PNG 201; biometric JPEG 201; biometric CSV 400.",
+    "Expected Outcome": "Pass",
+    "Status": "Pass",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc4.png"
+  },
+  {
+    "Test Case ID": "TC5",
+    "Steps": "1. Login as Investigator. 2. Submit wearable evidence with required wearable fields blank.",
+    "Input": "Wearable form with caseId only and no biometric readings.",
+    "Expected Result": "Submission blocked.",
+    "Actual Result": "Upload returned HTTP 400 with response {\"error\":\"Missing wearable biometric required fields\"}.",
+    "Expected Outcome": "Pass",
+    "Status": "Pass",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc5.png"
+  },
+  {
+    "Test Case ID": "TC6",
+    "Steps": "1. Login as Investigator. 2. Submit non-numeric strings in wearable numeric fields.",
+    "Input": "heartRate=abc, bloodOxygen=xyz, bodyTemperature=hot, respiratoryRate=fast, stepsCount=many.",
+    "Expected Result": "Rejected.",
+    "Actual Result": "Upload returned HTTP 500 with response {\"error\":\"Cast to Number failed for value \\\"NaN\\\" (type number) at path \\\"wearableData.heartRate\\\"; Cast to Number failed for value \\\"NaN\\\" (type number) at path \\\"wearableData.bloodOxygen\\\"; Cast to Number failed for value \\\"NaN\\\" (type number) at path \\\"wearableData.bodyTemperature\\\"; Cast to Number failed for value \\\"NaN\\\" (type number) at path \\\"wearableData.respiratoryRate\\\"; Cast to Number failed for value \\\"NaN\\\" (type number) at path \\\"wearableData.stepsCount\\\"\"}.",
+    "Expected Outcome": "Pass",
+    "Status": "Pass",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc6.png"
+  },
+  {
+    "Test Case ID": "TC7",
+    "Steps": "1. Login as Analyst. 2. Attempt to submit investigator-only evidence upload.",
+    "Input": "Analyst token calling POST /api/evidence/upload.",
+    "Expected Result": "Access denied.",
+    "Actual Result": "Upload returned HTTP 403 with response {\"error\":\"Forbidden for this role\"}.",
+    "Expected Outcome": "Pass",
+    "Status": "Pass",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc7.png"
+  },
+  {
+    "Test Case ID": "TC8",
+    "Steps": "1. Login as Administrator. 2. Request same ML status endpoint three times. 3. Compare response bodies.",
+    "Input": "{\"datasetPath\":\"frontend/public/datasets/forensic-biometric-wearable-dataset.csv\"}",
+    "Expected Result": "Same output every time.",
+    "Actual Result": "HTTP statuses 200, 200, 200; response bodies were identical.",
+    "Expected Outcome": "Pass",
+    "Status": "Pass",
+    "Deviation": "No - actual status matched the known expected outcome.",
+    "Evidence": "Backend log: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\backend-2026-04-27T14-24-17-327Z.log; UI screenshot: D:\\Downloads\\forensics_cyber_facefinger\\forensics_cyber_facefinger (2)\\forensics_cyber_facefinger\\qa-artifacts\\evidence\\ui-2026-04-27T14-24-17-327Z\\tc8.png"
+  }
+]
