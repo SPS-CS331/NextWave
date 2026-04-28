@@ -58,13 +58,13 @@ Ensures that new updates or bug fixes do not affect existing functionalities.
 
 ## 4. Tools Used <br/>
 The following tools and technologies are used to perform effective testing:
-- **Manual Testing**
+- **Manual Testing** <br/>
 The primary method that is used to validate our system's behaviour, especially in cases of Utility Testing, from an end-user perspective, is done by manually testing the system. 
-- **JavaScript Testing Utilities**, specifically the **Mocha** library
+- **JavaScript Testing Utilities**, specifically the **Mocha** library <br/>
 We have used the Mocha utility, a specific testing utility in JavaScript, for testing backend logic, ML modules, data processing functions, and overall system behaviour. 
-- **Postman (API Testing Tool)**
+- **Postman (API Testing Tool)** <br/>
 Tools like Postman and Curl are used to test RESTful APIs, verify request-response cycles, async-await functions, and ensure proper communication between frontend and backend.
-- **Browser Developer Tools**
+- **Browser Developer Tools** <br/>
 These are used for debugging frontend issues, monitoring network calls, and verifying UI interactions. 
 - **Logging Mechanisms** <br/>
 We are using console logs at differwnt locations across our codebase, for the purpose of tracking system behaviour, debug issues, and analyze failures. 
