@@ -23,14 +23,16 @@ To verify that the system maintains proper logging (chain of custody), which is 
 ## 2. Scope of Testing <br/>
 The scope of testing defines the boundaries of the testing process and identifies the system components that will be evaluated. For this project, testing covers all major functional modules and their interactions. <br/>
 The modules included in the scope are: <br/>
-- Check if **an evidence cannot be uploaded with an evidence ID same as some evidence uploaded before**.
+- Check if **an evidence cannot be uploaded with an evidence ID same as some evidence uploaded before**. This is a **KNOWN BUG**!
 - Check if **only the analyst to whom an evidence task has been assigned, gets the task of running the model**. Other analysts should not get it.
 - Check if in uploading cybercrime evidence, the **input file's type is .csv only**, nothing else is allowed.
 - Check if **the same fingerprint image is being input in the face-fingerprint recognition evidence, then the output shall be the same face image** (though confidence score may vary).
 - Check if in the wearable biometrics evidence input fields, **investigator is allowed to enter numeric inputs only**, strings are not allowed.
-- Check if **there cannot be multiple system administrators accounts**, only one administrator is allowed.
-- Check **if the same fingerprint image is given again, then the model is not running again**, but just giving the previously run output for same fingerprint.
+- Check if **there cannot be multiple system administrators accounts**, only one administrator is allowed. This is a **KNOWN BUG**!
+- Check **if the same fingerprint image is given again, then the model is not running again**, but just giving the previously run output for same fingerprint. This is a **KNOWN BUG**!
 - Check if in the wearable biometrics evidence upload, **there should not be any empty field. If there is , the form will not submit**.
+
+Hence, in our system, we have a total of **three bugs**! Rest of the 5 test cases are passing as expected.
 
 ---
 
