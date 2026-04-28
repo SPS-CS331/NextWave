@@ -3,19 +3,19 @@
 ## 1. Objective of Testing <br/>
 The primary objective of testing is to ensure that the **Automated Digital Forensics Evidence Collection and Analysis System** operates in a correct, secure, efficient, and reliable manner under various operating conditions. Testing is performed to validate that the system conforms to its specified functional and non-functional requirements and behaves as expected in real-world scenarios. <br/> <br/>
 The key objectives of testing include: <br/>
-- **Correct Evidence Handling**
+- **Correct Evidence Handling** <br/>
 To verify that digital evidence is properly uploaded, stored, retrieved, and processed without any loss, duplication, or corruption. This is critical since forensic systems must preserve data authenticity. 
-- **Accuracy of Forensic Analysis**
+- **Accuracy of Forensic Analysis** <br/>
 To ensure that the machine learning models and analytical components produce accurate, consistent, and reproducible results. Incorrect analysis could lead to misleading conclusions. 
-- **User Authentication and Access Control**
+- **User Authentication and Access Control** <br/>
 To confirm that only authorized users can access system functionalities and that role-based permissions (Administrator, Investigator, Analyst) are correctly enforced. 
-- **System Stability and Reliability**
+- **System Stability and Reliability** <br/>
 To evaluate whether the system performs consistently without crashes, failures, or unexpected behavior during normal and edge-case operations. 
-- **Performance Evaluation**
+- **Performance Evaluation** <br/>
 To assess how efficiently the system handles tasks such as large file uploads, preprocessing, and ML-based analysis. 
-- **Data Integrity and Security Assurance**
+- **Data Integrity and Security Assurance** <br/>
 To ensure that evidence integrity is maintained using hashing mechanisms and that sensitive data is protected from unauthorized access or tampering. 
-- **Compliance with Forensic Standards**
+- **Compliance with Forensic Standards** <br/>
 To verify that the system maintains proper logging (chain of custody), which is essential for legal and investigative purposes. 
 
 ---
