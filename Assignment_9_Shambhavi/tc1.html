@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>TC1 Evidence</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #101820; color: #eef4fb; }
+    main { padding: 34px; max-width: 1080px; }
+    h1 { margin: 0 0 8px; font-size: 34px; }
+    .badge { display: inline-block; padding: 8px 14px; border-radius: 8px; font-weight: 700; }
+    .pass { background: #0f766e; }
+    .fail { background: #b91c1c; }
+    section { margin-top: 18px; padding: 18px; border: 1px solid #334155; border-radius: 8px; background: #17212b; }
+    dt { color: #9fb3c8; font-weight: 700; margin-top: 12px; }
+    dd { margin: 5px 0 0; white-space: pre-wrap; line-height: 1.45; }
+    code { color: #bfdbfe; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>TC1</h1>
+    <span class="badge fail">Status: Fail</span>
+    <section>
+      <dl>
+        <dt>Steps</dt><dd>1. Login as Investigator. 2. Upload face image. 3. Upload same face image again.</dd>
+        <dt>Input</dt><dd>Same PNG face file uploaded twice with caseId FACE-DUP-001.</dd>
+        <dt>Expected Result</dt><dd>System flags duplicate entry.</dd>
+        <dt>Actual Result</dt><dd>First upload HTTP 201; second upload HTTP 201. Duplicate was accepted.</dd>
+        <dt>Expected Outcome</dt><dd>Fail</dd>
+        <dt>Deviation</dt><dd>No - actual status matched the known expected outcome.</dd>
+        <dt>Backend Evidence</dt><dd>Backend log: D:\Downloads\forensics_cyber_facefinger\forensics_cyber_facefinger_1\forensics_cyber_facefinger\qa-artifacts\evidence\backend-2026-04-27T14-43-23-126Z.log</dd>
+      </dl>
+    </section>
+  </main>
+</body>
+</html>

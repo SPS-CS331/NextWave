@@ -10,6 +10,7 @@ function generateRoleId(role) {
   if (role === "Administrator") return `ADM-${rand}`;
   if (role === "Investigator") return `INV-${rand}`;
   return `ANL-${rand}`;
+  
 }
 
 router.post("/signup", async (req, res) => {
@@ -53,5 +54,6 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   res.json({ token });
 });
+
 
 module.exports = router;
