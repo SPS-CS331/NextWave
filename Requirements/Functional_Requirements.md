@@ -50,15 +50,7 @@
     - Database: PostgreSQL / MongoDB  
     - Report Tools: Python  
 
-  ### 2.7 Result Visualization  
-    The system shall show analysis results in the form of charts and dashboards.  
-    
-    Tools and Technologies:  
-    - Frontend: React.js  
-    - Charts: Chart.js / Recharts  
-    - APIs: REST services  
-
-  ### 2.8 Report Creation  
+  ### 2.7 Report Creation  
     The system shall generate detailed reports of forensic analysis for investigation and legal use.  
     
     Tools and Technologies:  
