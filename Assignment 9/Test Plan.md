@@ -36,22 +36,22 @@ The modules included in the scope are: <br/>
 
 ## 3. Types of Testing <br/>
 A combination of different testing methodologies is used to ensure complete system validation: <br/>
-- Unit Testing
+- **Unit Testing** <br/>
 Individual components such as role-based access, login logic, and file validation are tested in isolation to verify correctness. 
-- Integration Testing
-Ensures proper interaction between modules, such as: 
+- **Integration Testing** <br/>
+Ensures proper interaction between modules, such as: <br/>
 	- Evidence upload → preprocessing 
 	- Preprocessing → ML analysis 
 	- Analysis → report generation 
-- System Testing
+- **System Testing** <br/>
 The entire system is tested as a whole to validate complete workflows and ensure all components work together seamlessly. 
-- Validation Testing
+- **Validation Testing** <br/>
 Ensures that all inputs conform to required formats and constraints, preventing invalid or malicious data entry. 
-- Security Testing
+- **Security Testing** <br/>
 Verifies authentication mechanisms, role-based access control, and protection against unauthorized access and data breaches.
-- Performance Testing
+- **Performance Testing** <br/>
 Evaluates system responsiveness and efficiency during operations such as large file uploads and ML processing. 
-- Regression Testing
+- **Regression Testing** <br/>
 Ensures that new updates or bug fixes do not affect existing functionalities. 
 
 ---
